@@ -1,92 +1,146 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
+  <div>
+    <div v-if="isLoading">
+      ローディング中...
+    </div>
+    <template v-else>
+      <div
+        v-if="isLogin"
+      >
+        <p>
+          {{ user.email }}でログイン中
+        </p>
+        <v-btn
+          @click="logOut"
+          :loading="loading"
+          :disabled="loading"
+          x-large
+          color="blue-grey"
+          dark
+        >ログアウト</v-btn>
+        <FormComponent />
+        <v-container fluid>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-card>
+                <h2 class="title font-weight-bold mx-3 pt-3">作業前</h2>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-card>
+                        <v-card-title>
+                          <span @click="showModal">やることタイトル(必須)<v-icon>mdi-dock-window</v-icon></span>
+                        </v-card-title>
+                        <v-card-text>
+                          <div class="text--primary">
+                            備考書いてあれば(必須ではない)
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-card>
+                <h2 class="title font-weight-bold mx-3 pt-3">作業中</h2>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-card>
+                        <v-card-title>
+                          <span @click="showModal">やることタイトル(必須)<v-icon>mdi-dock-window</v-icon></span>
+                        </v-card-title>
+                        <v-card-text>
+                          <div class="text--primary">
+                            備考書いてあれば(必須ではない)
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-card>
+                <h2 class="title font-weight-bold mx-3 pt-3">完了</h2>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-card>
+                        <v-card-title>
+                          <span @click="showModal">やることタイトル(必須)<v-icon>mdi-dock-window</v-icon></span>
+                        </v-card-title>
+                        <v-card-text>
+                          <div class="text--primary">
+                            備考書いてあれば(必須ではない)
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
       </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+      <div v-else class="my-2">
+        <v-btn
+          @click="logIn"
+          :loading="loading"
+          :disabled="loading"
+          x-large
+          color="primary"
+          dark
+        >
+          Googleアカウントでログイン
+        </v-btn>
+      </div>
+      <ModalContent :is-dialog-open="isDialogOpen" />
+    </template>
+  </div>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+// import firebase from 'firebase'
 
-export default {
+// Component
+import FormComponent from '~/components/Form.vue'
+import ModalContent from '~/components/ModalContent.vue'
+@Component({
   components: {
-    Logo,
-    VuetifyLogo
+    FormComponent,
+    ModalContent
+  }
+})
+export default class IndexPage extends Vue {
+  isLoading = false
+  isLogin = true
+  loader = null
+  loading = false
+  user = {
+    email: 'hogehoge@hoge.com'
+  }
+
+  isDialogOpen = false
+
+  private logIn () {
+    console.log('LOGIN')
+    // const provider = new firebase.auth.GoogleAuthProvider()
+    // firebase.auth().signInWithRedirect(provider)
+  }
+
+  private logOut () {
+    console.log('LOGOUT')
+    // firebase.auth().signOut()
+  }
+
+  private showModal () {
+    this.isDialogOpen = true
   }
 }
 </script>
