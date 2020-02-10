@@ -7,9 +7,6 @@
       <div
         v-if="isLogin"
       >
-        <p>
-          {{ user.email }}でログイン中
-        </p>
         <v-btn
           @click="logOut"
           :loading="loading"
@@ -77,6 +74,15 @@
                           <div class="text--primary">
                             備考書いてあれば(必須ではない)
                           </div>
+                          <v-chip
+                            class="ma-2"
+                            color="pink"
+                            label
+                            text-color="white"
+                          >
+                            <v-icon left>mdi-label</v-icon>
+                            タグが入る
+                          </v-chip>
                         </v-card-text>
                       </v-card>
                     </v-col>

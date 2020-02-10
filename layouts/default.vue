@@ -4,20 +4,19 @@
       :clipped-left="clipped"
       fixed
       app
+      justify="center"
     >
-      <v-btn
-        @click.stop="clipped = !clipped"
-        icon
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        @click.stop="fixed = !fixed"
-        icon
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title" />
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-trash-can-outline</v-icon>
+      </v-btn>
+      <p class="mb-0" v-if="isLogin">
+        {{ user.email }}でログイン中
+      </p>
+      <v-btn icon>
+        <v-icon>mdi-logout-variant</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
@@ -33,10 +32,20 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
+@Component
 export default class DefaultLayout extends Vue {
+  title = 'TODO TASK'
   clipped = false
   drawer = false
   fixed = false
+  miniVariant = false
+  right = true
+  rightDrawer = false
+  isLogin = true
+  user = {
+    email: 'hogehoge@hoge.com'
+  }
+
   items = [
     {
       icon: 'mdi-apps',
@@ -49,9 +58,5 @@ export default class DefaultLayout extends Vue {
       to: '/inspire'
     }
   ]
-  miniVariant = false
-  right = true
-  rightDrawer = false
-  title = 'TODO TASK'
 }
 </script>
