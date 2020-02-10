@@ -71,18 +71,35 @@
                           <span @click="showModal">やることタイトル(必須)<v-icon>mdi-dock-window</v-icon></span>
                         </v-card-title>
                         <v-card-text>
+                          <div class="mt-n2 ml-n2">
+                            <v-chip
+                              class="ma-2"
+                              color="pink"
+                              label
+                              text-color="white"
+                            >
+                              <v-icon left>mdi-label</v-icon>
+                              タグが入る
+                            </v-chip>
+                          </div>
                           <div class="text--primary">
                             備考書いてあれば(必須ではない)
                           </div>
-                          <v-chip
-                            class="ma-2"
-                            color="pink"
-                            label
-                            text-color="white"
-                          >
-                            <v-icon left>mdi-label</v-icon>
-                            タグが入る
-                          </v-chip>
+                          <v-container>
+                            <v-row
+                              align="center"
+                              justify="space-between"
+                            >
+                              <v-col cols="6">
+                                <p class="mb-0">YYYY/MM/DD HH:MM</p>
+                              </v-col>
+                              <v-col cols="6">
+                                <v-btn class="float-right" icon>
+                                  <v-icon>mdi-trash-can-outline</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </v-container>
                         </v-card-text>
                       </v-card>
                     </v-col>

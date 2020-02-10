@@ -8,9 +8,6 @@
     >
       <v-toolbar-title v-text="title" />
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-trash-can-outline</v-icon>
-      </v-btn>
       <p class="mb-0" v-if="isLogin">
         {{ user.email }}でログイン中
       </p>
