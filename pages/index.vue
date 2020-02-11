@@ -130,10 +130,13 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 // import firebase from 'firebase'
+import { Getter, Mutation, Action } from 'vuex-class'
 
 // Component
 import FormComponent from '~/components/Form.vue'
 import ModalContent from '~/components/ModalContent.vue'
+// import firebase from '~/plugins/firebase'
+
 @Component({
   components: {
     FormComponent,
@@ -141,6 +144,10 @@ import ModalContent from '~/components/ModalContent.vue'
   }
 })
 export default class IndexPage extends Vue {
+  @Mutation('setTask') setTask
+  @Getter('tasks') tasks
+  @Action('init') init
+
   isLoading = false
   isLogin = true
   loader = null
@@ -164,6 +171,12 @@ export default class IndexPage extends Vue {
 
   private showModal () {
     this.isDialogOpen = true
+  }
+
+  async mounted () {
+    const response = await this.init()
+
+    console.log(response)
   }
 }
 </script>
