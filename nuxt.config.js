@@ -31,7 +31,8 @@ export default {
   */
   plugins: [
     '~/plugins/firebase.ts',
-    '~/plugins/auth.ts'
+    '~/plugins/auth.ts',
+    '~/plugins/dateFormat.ts'
   ],
   /*
   ** Nuxt.js dev-modules

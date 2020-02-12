@@ -58,7 +58,7 @@
                               justify="space-between"
                             >
                               <v-col cols="6">
-                                <p class="mb-0">{{ task.ended_date }}</p>
+                                <p class="mb-0">{{ task.ended_date.seconds }}</p>
                               </v-col>
                               <v-col cols="6">
                                 <v-btn class="float-right" icon>
@@ -114,7 +114,7 @@
                               justify="space-between"
                             >
                               <v-col cols="6">
-                                <p class="mb-0">{{ task.ended_date }}</p>
+                                <p class="mb-0">{{ task.ended_date.seconds }}</p>
                               </v-col>
                               <v-col cols="6">
                                 <v-btn class="float-right" icon>
@@ -170,7 +170,9 @@
                               justify="space-between"
                             >
                               <v-col cols="6">
-                                <p class="mb-0">{{ task.ended_date }}</p>
+                                <p class="mb-0">
+                                  {{ $dateFormat(task.ended_date.seconds, 'YYYY/MM/DD hh時mm分') }}
+                                </p>
                               </v-col>
                               <v-col cols="6">
                                 <v-btn class="float-right" icon>
