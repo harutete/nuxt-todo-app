@@ -23,15 +23,50 @@
                 <h2 class="title font-weight-bold mx-3 pt-3">作業前</h2>
                 <v-container>
                   <v-row>
-                    <v-col cols="12">
+                    <v-col
+                      v-for="(task, index) in tasks"
+                      :key="`task${index}`"
+                      cols="12"
+                    >
                       <v-card>
                         <v-card-title>
-                          <span @click="showModal">やることタイトル(必須)<v-icon>mdi-dock-window</v-icon></span>
+                          <span @click="showModal">{{ task.title }}<v-icon>mdi-dock-window</v-icon></span>
                         </v-card-title>
                         <v-card-text>
-                          <div class="text--primary">
-                            備考書いてあれば(必須ではない)
+                          <div class="mt-n2 ml-n2">
+                            <v-chip
+                              v-for="(tag, index) in tasks.tags"
+                              :key="`tag${index}`"
+                              class="ma-2"
+                              :color="tag.color"
+                              label
+                              text-color="white"
+                            >
+                              <v-icon left>mdi-label</v-icon>
+                              {{ tag.name }}
+                            </v-chip>
                           </div>
+                          <div
+                            v-if="task.description"
+                            class="text--primary"
+                          >
+                            {{ task.description }}
+                          </div>
+                          <v-container>
+                            <v-row
+                              align="center"
+                              justify="space-between"
+                            >
+                              <v-col cols="6">
+                                <p class="mb-0">{{ task.ended_date }}</p>
+                              </v-col>
+                              <v-col cols="6">
+                                <v-btn class="float-right" icon>
+                                  <v-icon>mdi-trash-can-outline</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </v-container>
                         </v-card-text>
                       </v-card>
                     </v-col>
@@ -44,15 +79,50 @@
                 <h2 class="title font-weight-bold mx-3 pt-3">作業中</h2>
                 <v-container>
                   <v-row>
-                    <v-col cols="12">
+                    <v-col
+                      v-for="(task, index) in tasks"
+                      :key="`task${index}`"
+                      cols="12"
+                    >
                       <v-card>
                         <v-card-title>
-                          <span @click="showModal">やることタイトル(必須)<v-icon>mdi-dock-window</v-icon></span>
+                          <span @click="showModal">{{ task.title }}<v-icon>mdi-dock-window</v-icon></span>
                         </v-card-title>
                         <v-card-text>
-                          <div class="text--primary">
-                            備考書いてあれば(必須ではない)
+                          <div class="mt-n2 ml-n2">
+                            <v-chip
+                              v-for="(tag, index) in tasks.tags"
+                              :key="`tag${index}`"
+                              class="ma-2"
+                              :color="tag.color"
+                              label
+                              text-color="white"
+                            >
+                              <v-icon left>mdi-label</v-icon>
+                              {{ tag.name }}
+                            </v-chip>
                           </div>
+                          <div
+                            v-if="task.description"
+                            class="text--primary"
+                          >
+                            {{ task.description }}
+                          </div>
+                          <v-container>
+                            <v-row
+                              align="center"
+                              justify="space-between"
+                            >
+                              <v-col cols="6">
+                                <p class="mb-0">{{ task.ended_date }}</p>
+                              </v-col>
+                              <v-col cols="6">
+                                <v-btn class="float-right" icon>
+                                  <v-icon>mdi-trash-can-outline</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </v-container>
                         </v-card-text>
                       </v-card>
                     </v-col>
@@ -65,25 +135,34 @@
                 <h2 class="title font-weight-bold mx-3 pt-3">完了</h2>
                 <v-container>
                   <v-row>
-                    <v-col cols="12">
+                    <v-col
+                      v-for="(task, index) in tasks"
+                      :key="`task${index}`"
+                      cols="12"
+                    >
                       <v-card>
                         <v-card-title>
-                          <span @click="showModal">やることタイトル(必須)<v-icon>mdi-dock-window</v-icon></span>
+                          <span @click="showModal">{{ task.title }}<v-icon>mdi-dock-window</v-icon></span>
                         </v-card-title>
                         <v-card-text>
                           <div class="mt-n2 ml-n2">
                             <v-chip
+                              v-for="(tag, index) in tasks.tags"
+                              :key="`tag${index}`"
                               class="ma-2"
-                              color="pink"
+                              :color="tag.color"
                               label
                               text-color="white"
                             >
                               <v-icon left>mdi-label</v-icon>
-                              タグが入る
+                              {{ tag.name }}
                             </v-chip>
                           </div>
-                          <div class="text--primary">
-                            備考書いてあれば(必須ではない)
+                          <div
+                            v-if="task.description"
+                            class="text--primary"
+                          >
+                            {{ task.description }}
                           </div>
                           <v-container>
                             <v-row
@@ -91,7 +170,7 @@
                               justify="space-between"
                             >
                               <v-col cols="6">
-                                <p class="mb-0">YYYY/MM/DD HH:MM</p>
+                                <p class="mb-0">{{ task.ended_date }}</p>
                               </v-col>
                               <v-col cols="6">
                                 <v-btn class="float-right" icon>
