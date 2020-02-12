@@ -35,7 +35,7 @@
                         <v-card-text>
                           <div class="mt-n2 ml-n2">
                             <v-chip
-                              v-for="(tag, index) in tasks.tags"
+                              v-for="(tag, index) in task.tags"
                               :key="`tag${index}`"
                               class="ma-2"
                               :color="tag.color"
@@ -58,7 +58,9 @@
                               justify="space-between"
                             >
                               <v-col cols="6">
-                                <p class="mb-0">{{ task.ended_date.seconds }}</p>
+                                <p class="mb-0">
+                                  {{ $dateFormat(task.ended_date.seconds, 'YYYY/MM/DD hh時mm分') }}
+                                </p>
                               </v-col>
                               <v-col cols="6">
                                 <v-btn class="float-right" icon>
@@ -91,7 +93,7 @@
                         <v-card-text>
                           <div class="mt-n2 ml-n2">
                             <v-chip
-                              v-for="(tag, index) in tasks.tags"
+                              v-for="(tag, index) in task.tags"
                               :key="`tag${index}`"
                               class="ma-2"
                               :color="tag.color"
@@ -114,7 +116,9 @@
                               justify="space-between"
                             >
                               <v-col cols="6">
-                                <p class="mb-0">{{ task.ended_date.seconds }}</p>
+                                <p class="mb-0">
+                                  {{ $dateFormat(task.ended_date.seconds, 'YYYY/MM/DD hh時mm分') }}
+                                </p>
                               </v-col>
                               <v-col cols="6">
                                 <v-btn class="float-right" icon>
@@ -147,7 +151,7 @@
                         <v-card-text>
                           <div class="mt-n2 ml-n2">
                             <v-chip
-                              v-for="(tag, index) in tasks.tags"
+                              v-for="(tag, index) in task.tags"
                               :key="`tag${index}`"
                               class="ma-2"
                               :color="tag.color"
