@@ -11,7 +11,11 @@
       <p class="mb-0" v-if="isLogin">
         {{ user.email }}でログイン中
       </p>
-      <v-btn icon>
+      <v-btn
+        icon
+        @click="logOut"
+        :loading="loading"
+      >
         <v-icon>mdi-logout-variant</v-icon>
       </v-btn>
     </v-app-bar>
@@ -43,17 +47,9 @@ export default class DefaultLayout extends Vue {
     email: 'hogehoge@hoge.com'
   }
 
-  items = [
-    {
-      icon: 'mdi-apps',
-      title: 'Welcome',
-      to: '/'
-    },
-    {
-      icon: 'mdi-chart-bubble',
-      title: 'Inspire',
-      to: '/inspire'
-    }
-  ]
+  private logOut () {
+    console.log('LOGOUT')
+    // firebase.auth().signOut()
+  }
 }
 </script>

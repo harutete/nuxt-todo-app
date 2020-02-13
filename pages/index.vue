@@ -7,14 +7,6 @@
       <div
         v-if="isLogin"
       >
-        <v-btn
-          @click="logOut"
-          :loading="loading"
-          :disabled="loading"
-          x-large
-          color="blue-grey"
-          dark
-        >ログアウト</v-btn>
         <FormComponent />
         <v-container fluid>
           <v-row>
@@ -247,11 +239,6 @@ export default class IndexPage extends Vue {
     console.log('LOGIN')
     // const provider = new firebase.auth.GoogleAuthProvider()
     // firebase.auth().signInWithRedirect(provider)
-  }
-
-  private logOut () {
-    console.log('LOGOUT')
-    // firebase.auth().signOut()
   }
 
   private showModal () {
