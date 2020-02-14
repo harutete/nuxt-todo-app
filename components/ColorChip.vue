@@ -4,8 +4,16 @@
       v-for="(color, index) in colors"
       :key="`color${index}`"
     >
-      <input :id="`color-${color.name}`" type="radio" name="color" hidden>
-      <div class="color-chip" :style="`background: ${color.code}`">
+      <input
+        :id="`color-${color.name}`"
+        type="radio"
+        name="color"
+        hidden
+      >
+      <div
+        class="color-chip"
+        :style="`background: ${color.code}`"
+      >
         <label :for="`color-${color.name}`">
           {{ text }}
         </label>
