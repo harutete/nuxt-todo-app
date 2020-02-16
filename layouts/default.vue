@@ -14,7 +14,6 @@
       <v-btn
         icon
         @click="logOut"
-        :loading="loading"
       >
         <v-icon>mdi-logout-variant</v-icon>
       </v-btn>

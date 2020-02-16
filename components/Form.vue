@@ -54,8 +54,6 @@
       </v-row>
     </v-container>
     <v-btn
-      :loading="loading"
-      :disabled="loading"
       x-large
       color="blue-grey"
       dark
