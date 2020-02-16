@@ -2,6 +2,7 @@ import { GetterTree, ActionContext, ActionTree, MutationTree } from 'vuex'
 import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
 import { TaskState } from '~/types/'
+import filteringTasks from '~/common/filteringTasks'
 
 const db = firebase.firestore()
 
@@ -10,6 +11,15 @@ export const state = (): TaskState => ({
 })
 
 export const getters: GetterTree<TaskState, TaskState> = {
+  beforeTasks: (state: TaskState) => {
+    filteringTasks(state.tasks, 'before')
+  },
+  runningTasks: (state: TaskState) => {
+    filteringTasks(state.tasks, 'running')
+  },
+  doneTasks: (state: TaskState) => {
+    filteringTasks(state.tasks, 'done')
+  },
   tasks: (state: TaskState) => state.tasks
 }
 

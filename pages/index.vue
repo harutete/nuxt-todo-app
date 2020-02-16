@@ -16,11 +16,14 @@
                 <v-container>
                   <v-row>
                     <v-col
-                      v-for="(task, index) in tasks"
+                      v-for="(task, index) in beforeTasks"
                       :key="`task${index}`"
                       cols="12"
                     >
-                      <TaskCard :task="task" />
+                      <TaskCard
+                        :task="task"
+                        @show-modal="showModal"
+                       />
                     </v-col>
                   </v-row>
                 </v-container>
@@ -32,7 +35,7 @@
                 <v-container>
                   <v-row>
                     <v-col
-                      v-for="(task, index) in tasks"
+                      v-for="(task, index) in runningTasks"
                       :key="`task${index}`"
                       cols="12"
                     >
@@ -48,7 +51,7 @@
                 <v-container>
                   <v-row>
                     <v-col
-                      v-for="(task, index) in tasks"
+                      v-for="(task, index) in doneTasks"
                       :key="`task${index}`"
                       cols="12"
                     >
@@ -98,10 +101,13 @@ import TaskCard from '~/components/TaskCard.vue'
 })
 export default class IndexPage extends Vue {
   @Mutation('setTask') setTask
+  @Getter('beforeTasks') beforeTasks
+  @Getter('runningTasks') runningTasks
+  @Getter('doneTasks') doneTasks
   @Getter('tasks') tasks
   @Action('init') init
 
-  isLoading = false
+  isLoading = true
   isLogin = true
   loader = null
   loading = false
@@ -123,6 +129,7 @@ export default class IndexPage extends Vue {
 
   async mounted () {
     await this.init()
+    this.isLoading = false
   }
 }
 </script>
