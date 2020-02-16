@@ -120,5 +120,9 @@ export default class IndexPage extends Vue {
   private showModal () {
     this.isDialogOpen = true
   }
+
+  async mounted () {
+    await this.init()
+  }
 }
 </script>
