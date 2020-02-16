@@ -20,7 +20,6 @@
             label="Tag"
             v-model="tagText"
           ></v-text-field>
-          <!-- TODO 動的にタグテキストが入るようにする -->
           <ColorChip
             :text="setTagText"
           />
