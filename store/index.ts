@@ -11,22 +11,22 @@ export const state = (): TaskState => ({
 })
 
 export const getters: GetterTree<TaskState, TaskState> = {
-  beforeTasks: (state: TaskState): undefined | TaskDetail[] => {
+  beforeTasks: (state: TaskState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'before')
   },
-  runningTasks: (state: TaskState): undefined | TaskDetail[] => {
+  runningTasks: (state: TaskState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'running')
   },
-  doneTasks: (state: TaskState): undefined | TaskDetail[] => {
+  doneTasks: (state: TaskState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'done')
   },
-  tasks: (state: TaskState): null | TaskDetail[] => state.tasks
+  tasks: (state: TaskState): TaskDetail[] | null => state.tasks
 }
 
 export const mutations: MutationTree<TaskState> = {

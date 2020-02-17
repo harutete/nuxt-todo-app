@@ -6,7 +6,6 @@ const filteringTasks = (tasks: TaskDetail[], terms: string): TaskDetail[] => {
       item.status === terms
     )
 
-    console.log(filteredTasks)
   return filteredTasks
 }
 export default filteringTasks
