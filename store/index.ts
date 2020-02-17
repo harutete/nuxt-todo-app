@@ -12,12 +12,18 @@ export const state = (): TaskState => ({
 
 export const getters: GetterTree<TaskState, TaskState> = {
   beforeTasks: (state: TaskState) => {
+    if (state.tasks === null) return false
+
     return filteringTasks(state.tasks, 'before')
   },
   runningTasks: (state: TaskState) => {
+    if (state.tasks === null) return false
+
     return filteringTasks(state.tasks, 'running')
   },
   doneTasks: (state: TaskState) => {
+    if (state.tasks === null) return false
+
     return filteringTasks(state.tasks, 'done')
   },
   tasks: (state: TaskState) => state.tasks

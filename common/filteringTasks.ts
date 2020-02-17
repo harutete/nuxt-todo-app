@@ -1,6 +1,4 @@
-const filteringTasks = (tasks: any, terms: string): any => {
-  if (tasks === null) return
-
+const filteringTasks = (tasks: { [key: string]: any }[], terms: string): { [key: string]: any }[] => {
   const filteredTasks = tasks
     .filter((item: { [key: string]: any }) =>
       item.status === terms
