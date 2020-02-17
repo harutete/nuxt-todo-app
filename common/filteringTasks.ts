@@ -1,4 +1,6 @@
-const filteringTasks = (tasks: { [key: string]: any }[], terms: string): { [key: string]: any }[] => {
+import { TaskDetail } from '~/types/'
+
+const filteringTasks = (tasks: TaskDetail[], terms: string): TaskDetail[] => {
   const filteredTasks = tasks
     .filter((item: { [key: string]: any }) =>
       item.status === terms

@@ -1,7 +1,7 @@
 import { GetterTree, ActionContext, ActionTree, MutationTree } from 'vuex'
 import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
-import { TaskState } from '~/types/'
+import { TaskState, TaskDetail } from '~/types/'
 import filteringTasks from '~/common/filteringTasks'
 
 const db = firebase.firestore()
@@ -11,22 +11,22 @@ export const state = (): TaskState => ({
 })
 
 export const getters: GetterTree<TaskState, TaskState> = {
-  beforeTasks: (state: TaskState) => {
-    if (state.tasks === null) return false
+  beforeTasks: (state: TaskState): undefined | TaskDetail[] => {
+    if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'before')
   },
-  runningTasks: (state: TaskState) => {
-    if (state.tasks === null) return false
+  runningTasks: (state: TaskState): undefined | TaskDetail[] => {
+    if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'running')
   },
-  doneTasks: (state: TaskState) => {
-    if (state.tasks === null) return false
+  doneTasks: (state: TaskState): undefined | TaskDetail[] => {
+    if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'done')
   },
-  tasks: (state: TaskState) => state.tasks
+  tasks: (state: TaskState): null | TaskDetail[] => state.tasks
 }
 
 export const mutations: MutationTree<TaskState> = {
