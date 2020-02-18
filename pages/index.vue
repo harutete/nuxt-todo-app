@@ -15,15 +15,23 @@
                 <h2 class="title font-weight-bold mx-3 pt-3">作業前</h2>
                 <v-container>
                   <v-row>
+                    <template v-if="beforeTasks.length">
+                      <v-col
+                        v-for="(task, index) in beforeTasks"
+                        :key="`task${index}`"
+                        cols="12"
+                      >
+                        <TaskCard
+                          :task="task"
+                          @show-modal="showModal"
+                        />
+                      </v-col>
+                    </template>
                     <v-col
-                      v-for="(task, index) in beforeTasks"
-                      :key="`task${index}`"
+                      v-else
                       cols="12"
-                    >
-                      <TaskCard
-                        :task="task"
-                        @show-modal="showModal"
-                       />
+                     >
+                      <p>作業前のタスクはありません</p>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -34,12 +42,20 @@
                 <h2 class="title font-weight-bold mx-3 pt-3">作業中</h2>
                 <v-container>
                   <v-row>
+                    <template v-if="runningTasks.length">
+                      <v-col
+                        v-for="(task, index) in runningTasks"
+                        :key="`task${index}`"
+                        cols="12"
+                      >
+                        <TaskCard :task="task" />
+                      </v-col>
+                    </template>
                     <v-col
-                      v-for="(task, index) in runningTasks"
-                      :key="`task${index}`"
+                      v-else
                       cols="12"
-                    >
-                      <TaskCard :task="task" />
+                     >
+                      <p>作業中のタスクはありません</p>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -50,12 +66,20 @@
                 <h2 class="title font-weight-bold mx-3 pt-3">完了</h2>
                 <v-container>
                   <v-row>
+                    <template v-if="doneTasks.length">
+                      <v-col
+                        v-for="(task, index) in doneTasks"
+                        :key="`task${index}`"
+                        cols="12"
+                      >
+                        <TaskCard :task="task" />
+                      </v-col>
+                    </template>
                     <v-col
-                      v-for="(task, index) in doneTasks"
-                      :key="`task${index}`"
+                      v-else
                       cols="12"
-                    >
-                      <TaskCard :task="task" />
+                     >
+                      <p>完了のタスクはありません</p>
                     </v-col>
                   </v-row>
                 </v-container>
