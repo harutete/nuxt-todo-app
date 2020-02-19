@@ -29,8 +29,8 @@
           md="6"
         >
         <v-menu
-          ref="menu1"
-          v-model="menu1"
+          ref="menu"
+          v-model="menu"
           :close-on-content-click="false"
           transition="scale-transition"
           offset-y
@@ -43,6 +43,7 @@
               label="Date"
               hint="MM/DD/YYYY"
               persistent-hint
+              prepend-icon="event"
               @blur="date = parseDate(dateFormatted)"
               v-on="on"
             ></v-text-field>
@@ -81,7 +82,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
 import ColorChip from './ColorChip.vue'
 
 @Component({
@@ -90,7 +91,6 @@ import ColorChip from './ColorChip.vue'
   }
 })
 export default class FormComponent extends Vue {
-  picker = new Date().toISOString().substr(0, 10)
   hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
   tagText = ''
@@ -98,19 +98,20 @@ export default class FormComponent extends Vue {
   date = new Date().toISOString().substr(0, 10)
   dateFormatted = this.formatDate(new Date().toISOString().substr(0, 10))
 
-  get watchDateFormatted () {
-    return this.formatDate(this.date)
+  @Watch('date')
+  watchDate (): void {
+    this.dateFormatted = this.formatDate(this.date)
   }
 
   get setTagText (): string {
     return this.tagText === '' ? 'タグテキスト' : this.tagText
   }
 
-  get computedDateFormatted () {
+  get computedDateFormatted (): string | null {
     return this.formatDate(this.date)
   }
 
-  private formatDate (date: string) {
+  private formatDate (date: string): string | null {
     if (!date) {
       return null
     }
@@ -118,7 +119,7 @@ export default class FormComponent extends Vue {
     return `${month}/${day}/${year}`
   }
 
-  private parseDate (date) {
+  private parseDate (date: string): string | null {
     if (!date) {
       return null
     }
