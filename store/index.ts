@@ -5,9 +5,18 @@ import { TaskState, TaskDetail } from '~/types/'
 import filteringTasks from '~/common/filteringTasks'
 
 const db = firebase.firestore()
+const taskRef = db.collection('task')
 
 export const state = (): TaskState => ({
-  tasks: []
+  tasks: [],
+  taskItem: {
+    id: null,
+    title: null,
+    description: null,
+    status: null,
+    ended_date: null,
+    tags: []
+  }
 })
 
 export const getters: GetterTree<TaskState, TaskState> = {
@@ -38,7 +47,13 @@ export const mutations: MutationTree<TaskState> = {
 
 export const actions: ActionTree<TaskState, TaskState> = {
   init: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('tasks', db.collection('task'))
+    bindFirestoreRef('tasks', taskRef)
+  }),
+  addTask: firestoreAction((context, taskItem) => {
+    taskRef.add(taskItem)
+  }),
+  removeTask: firestoreAction((context, id) => {
+    taskRef.doc(id).delete()
   })
 }
 

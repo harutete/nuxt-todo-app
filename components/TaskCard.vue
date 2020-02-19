@@ -36,7 +36,11 @@
             </p>
           </v-col>
           <v-col cols="6">
-            <v-btn class="float-right" icon>
+            <v-btn
+              @click="removeTask(task.id)"
+              class="float-right"
+              icon
+            >
               <v-icon>mdi-trash-can-outline</v-icon>
             </v-btn>
           </v-col>
@@ -56,6 +60,10 @@ export default class TaskCard extends Vue {
 
   private showModal () {
     this.$emit('show-modal')
+  }
+
+  private removeTask (): void {
+    this.$emit('remove-task', this.task.id)
   }
 }
 </script>

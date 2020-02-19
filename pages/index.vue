@@ -7,7 +7,7 @@
       <div
         v-if="isLogin"
       >
-        <FormComponent />
+        <FormComponent @add-task="addTask" />
         <v-container fluid>
           <v-row>
             <v-col cols="12" md="4">
@@ -130,6 +130,8 @@ export default class IndexPage extends Vue {
   @Getter('doneTasks') doneTasks
   @Getter('tasks') tasks
   @Action('init') init
+  @Action('addTask') addTask
+  @Action('removeTask') removeTask
 
   isLoading = true
   isLogin = true
@@ -149,6 +151,14 @@ export default class IndexPage extends Vue {
 
   private showModal () {
     this.isDialogOpen = true
+  }
+
+  private addTaskItem (tasks: { [key: string]: any }): void {
+    this.addTask(tasks)
+  }
+
+  private removeTaskItem (taskId: number):void {
+    this.removeTask(taskId)
   }
 
   async mounted () {
