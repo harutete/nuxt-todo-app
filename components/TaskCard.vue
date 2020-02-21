@@ -52,7 +52,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component
 export default class TaskCard extends Vue {
   @Prop({ type: Object })
-  task: { [key: string]: any }
+  task!: { [key: string]: any }
 
   private showModal () {
     this.$emit('show-modal')
