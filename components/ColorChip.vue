@@ -10,13 +10,19 @@
         name="color"
         hidden
       >
-      <div
-        class="color-chip"
-        :style="`background: ${color.code}`"
-      >
-        <label :for="`color-${color.name}`">
-          {{ text }}
-        </label>
+      <div class="color-chip" @click="addTagColor(color)">
+        <div
+          class="color-chip__inner d-flex"
+          :style="`background: ${color.code}`"
+        >
+          <label :for="`color-${color.name}`">
+            {{ text }}
+          </label>
+          <v-spacer />
+          <transition name="fade">
+            <v-icon v-if="color.isSelect">mdi-check-outline</v-icon>
+          </transition>
+        </div>
       </div>
     </li>
   </ul>
@@ -33,44 +39,75 @@ export default class ColorChip extends Vue {
   colors = [
     {
       name: 'red',
-      code: '#dc143c'
+      code: '#dc143c',
+      isSelect: false
     },
     {
       name: 'green',
-      code: '#2e8b57'
+      code: '#2e8b57',
+      isSelect: false
     },
     {
       name: 'blue',
-      code: '#191970'
+      code: '#191970',
+      isSelect: false
     },
     {
       name: 'orange',
-      code: '#ff8c00'
+      code: '#ff8c00',
+      isSelect: false
     },
     {
       name: 'pink',
-      code: '#c71585'
+      code: '#c71585',
+      isSelect: false
     },
     {
       name: 'gray',
-      code: '#666666'
+      code: '#666666',
+      isSelect: false
     }
   ]
+
+  private sleep (ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  private async addTagColor (colorObj: { [key: string]: any }): Promise<void> {
+    colorObj.isSelect = true
+    await this.sleep(500)
+    colorObj.isSelect = false
+
+    this.$emit('add-tag-color', colorObj.code)
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .list-color-chip {
   list-style: none;
+  margin-top: 20px;
   padding: 0;
   li + li {
     margin-top: 10px;
   }
 }
 .color-chip {
-  cursor: pointer;
-  border-radius: 5px;
-  color: #FFFFFF;
-  padding: 5px 10px;
+  &__inner {
+    cursor: pointer;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 5px 10px;
+  }
+}
+.fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity .5s;
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
 }
 </style>

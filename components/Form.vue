@@ -27,8 +27,18 @@
             label="Tag"
             v-model="tagText"
           ></v-text-field>
+          <ul class="list-tag" v-if="tagList.length">
+            <li
+              v-for="(tag, index) in tagList"
+              :key="`tag${index}`"
+              :style="`background: ${tag.color}`"
+            >
+              {{ tag.name }}
+            </li>
+          </ul>
           <ColorChip
             :text="setTagText"
+            @add-tag-color="addTagColor($event)"
           />
           <v-menu
             ref="menu"
@@ -114,6 +124,7 @@ export default class FormComponent extends Vue {
   tags: { [key: string]: any }[] | [] = []
   hour: string | null = null
   minute: string | null = null
+  tagList: [] | { [key: string]: any }[] = []
 
   @Watch('date')
   watchDate (): void {
@@ -165,5 +176,34 @@ export default class FormComponent extends Vue {
   private addTask (): void {
     this.$emit('add-task', this.setTaskItem)
   }
+
+  private addTagColor (colorCode: string): void {
+    if (this.tagText === '') {
+      return
+    }
+
+    this.tagList.push({
+      name: this.tagText,
+      color: colorCode
+    })
+
+    this.tagText = ''
+  }
 }
 </script>
+
+<style scoped lang="scss">
+.list-tag {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px 0 0 -5px;
+  padding: 0;
+  li {
+    border-radius: 4px;
+    color: #FFFFFF;
+    margin: 5px 0 0 5px;
+    padding: 0 10px;
+  }
+}
+</style>
