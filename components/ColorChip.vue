@@ -33,8 +33,8 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class ColorChip extends Vue {
-  @Prop({ type: String, required: true })
-  text: string
+  @Prop({ type: String })
+  text!: string
 
   colors = [
     {

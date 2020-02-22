@@ -44,7 +44,7 @@ import { Vue, Prop, Component } from 'vue-property-decorator'
 
 @Component
 export default class ModalContent extends Vue {
-  @Prop({ type: Boolean, required: true, default: false })
-  isDialogOpen = false
+  @Prop({ type: Boolean, default: false })
+  isDialogOpen!: boolean
 }
 </script>
