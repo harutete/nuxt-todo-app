@@ -7,7 +7,7 @@ export interface TaskDetail {
   tags: { [key: string]: string }[] | []
 }
 
-export interface TaskState {
+export interface IndexState {
   isLogin?: boolean,
   isLoading?: boolean,
   user?: string[] | null,

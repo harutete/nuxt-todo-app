@@ -1,13 +1,16 @@
 import { GetterTree, ActionContext, ActionTree, MutationTree } from 'vuex'
 import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
-import { TaskState, TaskDetail } from '~/types/'
+import { IndexState, TaskDetail } from '~/types/'
 import filteringTasks from '~/common/filteringTasks'
 
 const db = firebase.firestore()
 const taskRef = db.collection('task')
 
-export const state = (): TaskState => ({
+export const state = (): IndexState => ({
+  isLogin: false,
+  isLoading: true,
+  user: null,
   tasks: [],
   taskItem: {
     id: null,
@@ -19,33 +22,33 @@ export const state = (): TaskState => ({
   }
 })
 
-export const getters: GetterTree<TaskState, TaskState> = {
-  beforeTasks: (state: TaskState): TaskDetail[] | undefined => {
+export const getters: GetterTree<IndexState, IndexState> = {
+  beforeTasks: (state: IndexState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'before')
   },
-  runningTasks: (state: TaskState): TaskDetail[] | undefined => {
+  runningTasks: (state: IndexState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'running')
   },
-  doneTasks: (state: TaskState): TaskDetail[] | undefined => {
+  doneTasks: (state: IndexState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
 
     return filteringTasks(state.tasks, 'done')
   },
-  tasks: (state: TaskState): TaskDetail[] | null => state.tasks
+  tasks: (state: IndexState): TaskDetail[] | null => state.tasks
 }
 
-export const mutations: MutationTree<TaskState> = {
-  setTask: (state: TaskState, tasks: any) => {
+export const mutations: MutationTree<IndexState> = {
+  setTask: (state: IndexState, tasks: any) => {
     state.tasks = tasks
   },
   ...vuexfireMutations
 }
 
-export const actions: ActionTree<TaskState, TaskState> = {
+export const actions: ActionTree<IndexState, IndexState> = {
   init: firestoreAction(({ bindFirestoreRef }) => {
     bindFirestoreRef('tasks', taskRef)
   }),
