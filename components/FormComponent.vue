@@ -105,7 +105,7 @@
         color="blue-grey"
         dark
         class="mx-auto"
-        @click="addTask"
+        @click="addTaskItem"
       >Submit</v-btn>
     </div>
   </v-form>
@@ -164,6 +164,12 @@ export default class FormComponent extends Vue {
     }
   }
 
+  private initTaskItem (): void {
+    this.title = ''
+    this.description = ''
+    this.tagList = []
+  }
+
   private formatDate (date: string): string | null {
     if (!date) {
       return null
@@ -180,8 +186,10 @@ export default class FormComponent extends Vue {
     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
   }
 
-  private addTask (): void {
-    this.$emit('add-task', this.setTaskItem)
+  private addTaskItem (): void {
+    this.$emit('add-task-item', this.setTaskItem)
+
+    this.initTaskItem()
   }
 
   private appendCustomTag (colorCode: string): void | boolean {

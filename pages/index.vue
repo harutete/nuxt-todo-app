@@ -7,7 +7,7 @@
       <div
         v-if="isLogin"
       >
-        <FormComponent @add-task="addTask" />
+        <FormComponent @add-task-item="addTaskItem" />
         <v-container fluid>
           <v-row>
             <v-col cols="12" md="4">
