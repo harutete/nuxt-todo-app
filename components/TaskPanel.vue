@@ -44,8 +44,10 @@ export default class TaskCard extends Vue {
   @Prop({ type: Object })
   tasks!: { [key: string]: any }[]
 
+  isDialogOpen = false
+
   private showModal () {
-    this.$emit('show-modal')
+    this.isDialogOpen = true
   }
 }
 </script>

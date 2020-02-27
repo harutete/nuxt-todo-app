@@ -82,16 +82,10 @@ export default class IndexPage extends Vue {
     email: 'hogehoge@hoge.com'
   }
 
-  isDialogOpen = false
-
   private logIn () {
     console.log('LOGIN')
     // const provider = new firebase.auth.GoogleAuthProvider()
     // firebase.auth().signInWithRedirect(provider)
-  }
-
-  private showModal () {
-    this.isDialogOpen = true
   }
 
   async mounted () {
