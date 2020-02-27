@@ -54,7 +54,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import { Getter, Mutation, Action } from 'vuex-class'
 
 // Component
-import FormComponent from '~/components/Form.vue'
+import FormComponent from '~/components/FormComponent.vue'
 import ModalContent from '~/components/ModalContent.vue'
 import TaskPanel from '~/components/TaskPanel.vue'
 // import firebase from '~/plugins/firebase'
