@@ -27,19 +27,27 @@
             label="Tag"
             v-model="tagText"
           ></v-text-field>
-          <ul class="list-tag" v-if="tagList.length">
+          <ul
+            v-show="tagList.length"
+            class="list-tag"
+          >
             <li
               v-for="(tag, index) in tagList"
               :key="`tag${index}`"
-              :style="`background: ${tag.color}`"
+              :style="`background: ${tag.code}`"
             >
               {{ tag.name }}
             </li>
           </ul>
           <ColorChip
             :text="setTagText"
-            @add-tag-color="addTagColor($event)"
+            @append-custom-tag="appendCustomTag($event)"
           />
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+        >
           <v-menu
             ref="menu"
             v-model="menu"
@@ -177,14 +185,16 @@ export default class FormComponent extends Vue {
     this.$emit('add-task', this.setTaskItem)
   }
 
-  private addTagColor (colorCode: string): void {
+  private appendCustomTag (colorCode: string): void | boolean {
     if (this.tagText === '') {
-      return
+      window.alert('テキストを入力してください')
+
+      return false
     }
 
     this.tagList.push({
       name: this.tagText,
-      color: colorCode
+      code: colorCode
     })
 
     this.tagText = ''
@@ -192,18 +202,19 @@ export default class FormComponent extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .list-tag {
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
-  margin: 5px 0 0 -5px;
+  list-style: none;
+  margin: 10px 0 0 -10px;
   padding: 0;
   li {
     border-radius: 4px;
     color: #FFFFFF;
-    margin: 5px 0 0 5px;
-    padding: 0 10px;
+    font-size: 1rem;
+    margin: 10px 0 0 10px;
+    padding: 2px 10px;
   }
 }
 </style>

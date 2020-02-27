@@ -10,19 +10,20 @@
         name="color"
         hidden
       >
-      <div class="color-chip" @click="addTagColor(color)">
-        <div
-          class="color-chip__inner d-flex"
-          :style="`background: ${color.code}`"
-        >
-          <label :for="`color-${color.name}`">
-            {{ text }}
-          </label>
-          <v-spacer />
-          <transition name="fade">
-            <v-icon v-if="color.isSelect">mdi-check-outline</v-icon>
-          </transition>
-        </div>
+      <div
+        @click="appendCustomTag(color)"
+        :style="`background: ${color.code}`"
+        class="color-chip d-flex"
+      >
+        <label :for="`color-${color.name}`">
+          {{ text }}
+        </label>
+        <v-spacer />
+        <transition name="fade">
+          <v-icon v-show="color.isSelect">
+            mdi-check-circle-outline
+          </v-icon>
+        </transition>
       </div>
     </li>
   </ul>
@@ -73,12 +74,12 @@ export default class ColorChip extends Vue {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
-  private async addTagColor (colorObj: { [key: string]: any }): Promise<void> {
-    colorObj.isSelect = true
+  private async appendCustomTag (colorDetail: { [key: string]: string | boolean }): Promise<void> {
+    colorDetail.isSelect = true
     await this.sleep(500)
-    colorObj.isSelect = false
+    colorDetail.isSelect = false
 
-    this.$emit('add-tag-color', colorObj.code)
+    this.$emit('append-custom-tag', colorDetail.code)
   }
 }
 </script>
@@ -86,9 +87,9 @@ export default class ColorChip extends Vue {
 <style lang="scss" scoped>
 .list-color-chip {
   list-style: none;
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 0;
-  li + li {
+  li {
     margin-top: 10px;
   }
 }
