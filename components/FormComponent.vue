@@ -146,6 +146,8 @@ export default class FormComponent extends Vue {
 
   private appendCustomTag (colorCode: string): void | boolean {
     if (this.tagText === '') {
+      window.alert('テキストを入力してください')
+
       return false
     }
 
