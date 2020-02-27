@@ -11,8 +11,9 @@
         hidden
       >
       <div
-        class="color-chip"
+        @click="appendCustomTag(color.code)"
         :style="`background: ${color.code}`"
+        class="color-chip"
       >
         <label :for="`color-${color.name}`">
           {{ text }}
@@ -29,6 +30,8 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class ColorChip extends Vue {
   @Prop({ type: String })
   text!: string
+
+  isSelect = false
 
   colors = [
     {
@@ -56,14 +59,27 @@ export default class ColorChip extends Vue {
       code: '#666666'
     }
   ]
+
+  private sleep (ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  private async appendCustomTag (selectColor: string): Promise<void> {
+    this.isSelect = true
+    await this.sleep(500)
+    this.isSelect = false
+
+    this.$emit('append-custom-tag', selectColor)
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .list-color-chip {
   list-style: none;
+  margin-top: 10px;
   padding: 0;
-  li + li {
+  li {
     margin-top: 10px;
   }
 }

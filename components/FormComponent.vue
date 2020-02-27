@@ -20,8 +20,21 @@
             label="Tag"
             v-model="tagText"
           ></v-text-field>
+          <ul
+            v-show="tagList.length"
+            class="list-tag"
+          >
+            <li
+              v-for="(tag, index) in tagList"
+              :key="`tag${index}`"
+              :style="`background: ${tag.code}`"
+            >
+              {{ tag.name }}
+            </li>
+          </ul>
           <ColorChip
             :text="setTagText"
+            @append-custom-tag="appendCustomTag($event)"
           />
         </v-col>
         <v-col
@@ -97,6 +110,7 @@ export default class FormComponent extends Vue {
   menu = false
   date = new Date().toISOString().substr(0, 10)
   dateFormatted = this.formatDate(new Date().toISOString().substr(0, 10))
+  tagList: [] | { [key: string]: string }[] = []
 
   get watchDateFormatted () {
     return this.formatDate(this.date)
@@ -118,12 +132,37 @@ export default class FormComponent extends Vue {
     return `${month}/${day}/${year}`
   }
 
-  private parseDate (date) {
+  private parseDate (date: string): string | null {
     if (!date) {
       return null
     }
     const [month, day, year] = date.split('/')
     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
   }
+
+  private appendCustomTag (colorCode: string):void {
+    this.tagList.push({
+      name: this.tagText,
+      code: colorCode
+    })
+
+    this.tagText = ''
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.list-tag {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0 0 -10px;
+  padding: 0;
+  li {
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 1rem;
+    margin: 10px 0 0 10px;
+    padding: 2px 10px;
+  }
+}
+</style>
