@@ -11,13 +11,19 @@
         hidden
       >
       <div
-        @click="appendCustomTag(color.code)"
+        @click="appendCustomTag(color)"
         :style="`background: ${color.code}`"
-        class="color-chip"
+        class="color-chip d-flex"
       >
         <label :for="`color-${color.name}`">
           {{ text }}
         </label>
+        <v-spacer />
+        <transition name="fade">
+          <v-icon v-show="color.isSelect">
+            mdi-check-circle-outline
+          </v-icon>
+        </transition>
       </div>
     </li>
   </ul>
@@ -31,32 +37,36 @@ export default class ColorChip extends Vue {
   @Prop({ type: String })
   text!: string
 
-  isSelect = false
-
   colors = [
     {
       name: 'red',
-      code: '#dc143c'
+      code: '#dc143c',
+      isSelect: false
     },
     {
       name: 'green',
-      code: '#2e8b57'
+      code: '#2e8b57',
+      isSelect: false
     },
     {
       name: 'blue',
-      code: '#191970'
+      code: '#191970',
+      isSelect: false
     },
     {
       name: 'orange',
-      code: '#ff8c00'
+      code: '#ff8c00',
+      isSelect: false
     },
     {
       name: 'pink',
-      code: '#c71585'
+      code: '#c71585',
+      isSelect: false
     },
     {
       name: 'gray',
-      code: '#666666'
+      code: '#666666',
+      isSelect: false
     }
   ]
 
@@ -64,12 +74,12 @@ export default class ColorChip extends Vue {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
-  private async appendCustomTag (selectColor: string): Promise<void> {
-    this.isSelect = true
+  private async appendCustomTag (colorDetail: { [key: string]: string | boolean }): Promise<void> {
+    colorDetail.isSelect = true
     await this.sleep(500)
-    this.isSelect = false
+    colorDetail.isSelect = false
 
-    this.$emit('append-custom-tag', selectColor)
+    this.$emit('append-custom-tag', colorDetail.code)
   }
 }
 </script>
@@ -87,6 +97,20 @@ export default class ColorChip extends Vue {
   cursor: pointer;
   border-radius: 5px;
   color: #FFFFFF;
+  text-align: left;
   padding: 5px 10px;
+  i {
+    color: inherit;
+  }
+}
+.fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity .5s;
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
 }
 </style>

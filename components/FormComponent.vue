@@ -165,6 +165,7 @@ export default class FormComponent extends Vue {
 .list-tag {
   display: flex;
   flex-wrap: wrap;
+  list-style: none;
   margin: 10px 0 0 -10px;
   padding: 0;
   li {
