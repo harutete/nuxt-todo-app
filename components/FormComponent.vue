@@ -42,8 +42,8 @@
           md="6"
         >
           <v-menu
-            ref="menu1"
-            v-model="menu1"
+            ref="menu"
+            v-model="menu"
             :close-on-content-click="false"
             transition="scale-transition"
             offset-y
@@ -60,7 +60,11 @@
                 v-on="on"
               ></v-text-field>
             </template>
-            <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>
+            <v-date-picker
+              v-model="date"
+              no-title
+              @input="menu = false"
+            ></v-date-picker>
           </v-menu>
           <v-row>
             <v-col
@@ -140,7 +144,11 @@ export default class FormComponent extends Vue {
     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
   }
 
-  private appendCustomTag (colorCode: string):void {
+  private appendCustomTag (colorCode: string): void | boolean {
+    if (this.tagText === '') {
+      return false
+    }
+
     this.tagList.push({
       name: this.tagText,
       code: colorCode
