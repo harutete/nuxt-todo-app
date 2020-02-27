@@ -94,11 +94,12 @@ export default class ColorChip extends Vue {
   }
 }
 .color-chip {
-  &__inner {
-    cursor: pointer;
-    border-radius: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  i {
     color: #FFFFFF;
-    padding: 5px 10px;
   }
 }
 .fade {

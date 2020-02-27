@@ -34,7 +34,7 @@
             <li
               v-for="(tag, index) in tagList"
               :key="`tag${index}`"
-              :style="`background: ${tag.code}`"
+              :style="`background: ${tag.color}`"
             >
               {{ tag.name }}
             </li>
@@ -129,7 +129,6 @@ export default class FormComponent extends Vue {
   dateFormatted = this.formatDate(new Date().toISOString().substr(0, 10))
   title: string | null = null
   description: string | null = null
-  tags: { [key: string]: any }[] | [] = []
   hour: string | null = null
   minute: string | null = null
   tagList: [] | { [key: string]: any }[] = []
@@ -161,7 +160,7 @@ export default class FormComponent extends Vue {
       description: this.description,
       status: 'before',
       ended_date: new Date(year, month, day, hour, minute),
-      tags: this.tags
+      tags: this.tagList
     }
   }
 
@@ -194,7 +193,7 @@ export default class FormComponent extends Vue {
 
     this.tagList.push({
       name: this.tagText,
-      code: colorCode
+      color: colorCode
     })
 
     this.tagText = ''

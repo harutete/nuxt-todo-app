@@ -14,18 +14,21 @@
               <TaskPanel
                 panel-title="作業前"
                 :tasks="beforeTasks"
+                @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
             <v-col cols="12" md="4">
               <TaskPanel
                 panel-title="作業中"
                 :tasks="runningTasks"
+                @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
             <v-col cols="12" md="4">
               <TaskPanel
                 panel-title="完了"
                 :tasks="doneTasks"
+                @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
           </v-row>
@@ -43,7 +46,7 @@
           Googleアカウントでログイン
         </v-btn>
       </div>
-      <ModalContent :is-dialog-open="isDialogOpen" />
+      <!-- <ModalContent :is-dialog-open="isDialogOpen" /> -->
     </template>
   </div>
 </template>
@@ -94,7 +97,7 @@ export default class IndexPage extends Vue {
     this.addTask(tasks)
   }
 
-  private removeTaskItem (taskId: number):void {
+  private removeTaskItem (taskId: string | number):void {
     this.removeTask(taskId)
   }
 

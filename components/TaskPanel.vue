@@ -14,6 +14,7 @@
             <ToDoCard
               :task="task"
               @show-modal="showModal"
+              @remove-task-item="removeTaskItem($event)"
             />
           </v-col>
         </template>
@@ -37,17 +38,21 @@ import ToDoCard from '~/components/ToDoCard.vue'
     ToDoCard
   }
 })
-export default class TaskCard extends Vue {
+export default class TaskPanel extends Vue {
   @Prop({ type: String })
   panelTitle!: string
 
-  @Prop({ type: Object })
+  @Prop({ type: Array })
   tasks!: { [key: string]: any }[]
 
   isDialogOpen = false
 
   private showModal () {
     this.isDialogOpen = true
+  }
+
+  private removeTaskItem (taskId: string | number): void {
+    this.$emit('remove-task-item', taskId)
   }
 }
 </script>

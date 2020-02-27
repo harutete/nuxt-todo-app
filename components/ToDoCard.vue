@@ -37,7 +37,7 @@
           </v-col>
           <v-col cols="6">
             <v-btn
-              @click="removeTask(task.id)"
+              @click="removeTaskItem(task.id)"
               class="float-right"
               icon
             >
@@ -54,7 +54,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
-export default class TaskCard extends Vue {
+export default class TodoCard extends Vue {
   @Prop({ type: Object })
   task!: { [key: string]: any }
 
@@ -62,8 +62,8 @@ export default class TaskCard extends Vue {
     this.$emit('show-modal')
   }
 
-  private removeTask (): void {
-    this.$emit('remove-task', this.task.id)
+  private removeTaskItem (taskId: string | number): void {
+    this.$emit('remove-task-item', taskId)
   }
 }
 </script>
