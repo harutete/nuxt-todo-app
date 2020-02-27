@@ -1,5 +1,5 @@
 <template>
-  <p>みろぐいんやで</p>
+  <p>ログインする</p>
 </template>
 
 <script lang="ts">

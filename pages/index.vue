@@ -62,6 +62,7 @@ import ModalContent from '~/components/ModalContent.vue'
 import TaskPanel from '~/components/TaskPanel.vue'
 
 @Component({
+  middleware: 'checkAuthentication',
   components: {
     FormComponent,
     ModalContent,

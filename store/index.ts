@@ -23,6 +23,7 @@ export const state = (): IndexState => ({
 })
 
 export const getters: GetterTree<IndexState, IndexState> = {
+  isLogin: state => state.isLogin,
   beforeTasks: (state: IndexState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
 
@@ -42,6 +43,9 @@ export const getters: GetterTree<IndexState, IndexState> = {
 }
 
 export const mutations: MutationTree<IndexState> = {
+  setLoggedIn: (state: IndexState, isLogin: boolean) => {
+    state.isLogin = isLogin
+  },
   setTask: (state: IndexState, tasks: any) => {
     state.tasks = tasks
   },
