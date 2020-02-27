@@ -46,6 +46,9 @@ export const mutations: MutationTree<IndexState> = {
   setLoggedIn: (state: IndexState, isLogin: boolean) => {
     state.isLogin = isLogin
   },
+  setUserData: (state: IndexState, user): void => {
+    state.user = user
+  },
   setTask: (state: IndexState, tasks: any) => {
     state.tasks = tasks
   },

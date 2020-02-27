@@ -54,7 +54,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { Getter, Mutation, Action } from 'vuex-class'
-import firebase from 'firebase'
 
 // Component
 import FormComponent from '~/components/FormComponent.vue'
@@ -85,11 +84,6 @@ export default class IndexPage extends Vue {
   loading = false
   user = {
     email: 'hogehoge@hoge.com'
-  }
-
-  private logIn () {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    firebase.auth().signInWithRedirect(provider)
   }
 
   private addTaskItem (tasks: { [key: string]: any }): void {
