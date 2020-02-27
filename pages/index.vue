@@ -53,14 +53,13 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-// import firebase from 'firebase'
+import firebase from 'firebase'
 import { Getter, Mutation, Action } from 'vuex-class'
 
 // Component
 import FormComponent from '~/components/FormComponent.vue'
 import ModalContent from '~/components/ModalContent.vue'
 import TaskPanel from '~/components/TaskPanel.vue'
-// import firebase from '~/plugins/firebase'
 
 @Component({
   components: {
@@ -88,9 +87,8 @@ export default class IndexPage extends Vue {
   }
 
   private logIn () {
-    console.log('LOGIN')
-    // const provider = new firebase.auth.GoogleAuthProvider()
-    // firebase.auth().signInWithRedirect(provider)
+    const provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithRedirect(provider)
   }
 
   private addTaskItem (tasks: { [key: string]: any }): void {
