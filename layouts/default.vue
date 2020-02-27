@@ -31,6 +31,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import firebase from 'firebase'
 
 @Component
 export default class DefaultLayout extends Vue {
@@ -47,8 +48,7 @@ export default class DefaultLayout extends Vue {
   }
 
   private logOut () {
-    console.log('LOGOUT')
-    // firebase.auth().signOut()
+    firebase.auth().signOut()
   }
 }
 </script>

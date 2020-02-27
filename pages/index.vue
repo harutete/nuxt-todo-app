@@ -53,8 +53,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import firebase from 'firebase'
 import { Getter, Mutation, Action } from 'vuex-class'
+import firebase from 'firebase'
 
 // Component
 import FormComponent from '~/components/FormComponent.vue'
