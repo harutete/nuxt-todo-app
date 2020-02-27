@@ -11,79 +11,22 @@
         <v-container fluid>
           <v-row>
             <v-col cols="12" md="4">
-              <v-card>
-                <h2 class="title font-weight-bold mx-3 pt-3">作業前</h2>
-                <v-container>
-                  <v-row>
-                    <template v-if="beforeTasks.length">
-                      <v-col
-                        v-for="(task, index) in beforeTasks"
-                        :key="`task${index}`"
-                        cols="12"
-                      >
-                        <TaskCard
-                          :task="task"
-                          @show-modal="showModal"
-                        />
-                      </v-col>
-                    </template>
-                    <v-col
-                      v-else
-                      cols="12"
-                     >
-                      <p>作業前のタスクはありません</p>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card>
+              <TaskPanel
+                panel-title="作業前"
+                :tasks="beforeTasks"
+              />
             </v-col>
             <v-col cols="12" md="4">
-              <v-card>
-                <h2 class="title font-weight-bold mx-3 pt-3">作業中</h2>
-                <v-container>
-                  <v-row>
-                    <template v-if="runningTasks.length">
-                      <v-col
-                        v-for="(task, index) in runningTasks"
-                        :key="`task${index}`"
-                        cols="12"
-                      >
-                        <TaskCard :task="task" />
-                      </v-col>
-                    </template>
-                    <v-col
-                      v-else
-                      cols="12"
-                     >
-                      <p>作業中のタスクはありません</p>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card>
+              <TaskPanel
+                panel-title="作業中"
+                :tasks="runningTasks"
+              />
             </v-col>
             <v-col cols="12" md="4">
-              <v-card>
-                <h2 class="title font-weight-bold mx-3 pt-3">完了</h2>
-                <v-container>
-                  <v-row>
-                    <template v-if="doneTasks.length">
-                      <v-col
-                        v-for="(task, index) in doneTasks"
-                        :key="`task${index}`"
-                        cols="12"
-                      >
-                        <TaskCard :task="task" />
-                      </v-col>
-                    </template>
-                    <v-col
-                      v-else
-                      cols="12"
-                     >
-                      <p>完了のタスクはありません</p>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card>
+              <TaskPanel
+                panel-title="完了"
+                :tasks="doneTasks"
+              />
             </v-col>
           </v-row>
         </v-container>
@@ -113,23 +56,23 @@ import { Getter, Mutation, Action } from 'vuex-class'
 // Component
 import FormComponent from '~/components/Form.vue'
 import ModalContent from '~/components/ModalContent.vue'
-import TaskCard from '~/components/TaskCard.vue'
+import TaskPanel from '~/components/TaskPanel.vue'
 // import firebase from '~/plugins/firebase'
 
 @Component({
   components: {
     FormComponent,
     ModalContent,
-    TaskCard
+    TaskPanel
   }
 })
 export default class IndexPage extends Vue {
-  @Mutation('setTask') setTask
   @Getter('beforeTasks') beforeTasks
   @Getter('runningTasks') runningTasks
   @Getter('doneTasks') doneTasks
   @Getter('tasks') tasks
   @Action('init') init
+  @Mutation('setTask') setTask
 
   isLoading = true
   isLogin = true
