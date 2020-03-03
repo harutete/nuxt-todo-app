@@ -6,8 +6,9 @@
       app
       justify="center"
     >
-      <v-toolbar-title v-text="title" />
-      <v-spacer></v-spacer>
+      <v-spacer />
+      <v-toolbar-title v-text="title" class="text-logo" />
+      <v-spacer />
       <p class="mb-0 mr-2" v-if="isLogin">
         <v-icon class="mr-1">mdi-account-circle-outline</v-icon>
         {{ user.displayName }}
@@ -57,3 +58,16 @@ export default class DefaultLayout extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c|Pacifico&display=swap');
+.v-application--wrap {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.text-logo {
+  font: {
+    family: 'Pacifico', cursive;
+    size: 1.8rem;
+  }
+}
+</style>
