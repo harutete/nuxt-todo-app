@@ -82,9 +82,6 @@ export default class IndexPage extends Vue {
   isLogin = true
   loader = null
   loading = false
-  user = {
-    email: 'hogehoge@hoge.com'
-  }
 
   private addTaskItem (tasks: { [key: string]: any }): void {
     this.addTask(tasks)

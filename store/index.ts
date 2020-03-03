@@ -23,7 +23,8 @@ export const state = (): IndexState => ({
 })
 
 export const getters: GetterTree<IndexState, IndexState> = {
-  isLogin: state => state.isLogin,
+  isLogin: state => !!state.user,
+  user: state => state.user,
   beforeTasks: (state: IndexState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
 

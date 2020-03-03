@@ -8,8 +8,9 @@
     >
       <v-toolbar-title v-text="title" />
       <v-spacer></v-spacer>
-      <p class="mb-0" v-if="isLogin">
-        {{ user.email }}でログイン中
+      <p class="mb-0 mr-2" v-if="isLogin">
+        <v-icon class="mr-1">mdi-account-circle-outline</v-icon>
+        {{ user.displayName }}
       </p>
       <v-btn
         icon
@@ -31,10 +32,14 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
 import firebase from 'firebase'
 
 @Component
 export default class DefaultLayout extends Vue {
+  @Getter('user') user
+  @Getter('isLogin') isLogin
+
   title = 'TODO TASK'
   clipped = false
   drawer = false
@@ -42,13 +47,13 @@ export default class DefaultLayout extends Vue {
   miniVariant = false
   right = true
   rightDrawer = false
-  isLogin = true
-  user = {
-    email: 'hogehoge@hoge.com'
-  }
 
   private logOut () {
     firebase.auth().signOut()
+  }
+
+  mounted () {
+    console.log(this.user.email)
   }
 }
 </script>
