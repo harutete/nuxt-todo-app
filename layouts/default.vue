@@ -8,17 +8,25 @@
     >
       <v-spacer />
       <v-toolbar-title v-text="title" class="text-logo" />
-      <v-spacer />
-      <p class="mb-0 mr-2" v-if="isLogin">
-        <v-icon class="mr-1">mdi-account-circle-outline</v-icon>
-        {{ user.displayName }}
-      </p>
-      <v-btn
-        icon
-        @click="logOut"
+      <v-icon
+        class="ml-2 ico-logo"
+        :class="{'is-bound': !isLogin}"
       >
-        <v-icon>mdi-logout-variant</v-icon>
-      </v-btn>
+        mdi-lead-pencil
+      </v-icon>
+      <v-spacer />
+      <template v-if="isLogin">
+        <p class="mb-0 mr-2">
+          <v-icon class="mr-1">mdi-account-circle-outline</v-icon>
+          {{ user.displayName }}
+        </p>
+        <v-btn
+          icon
+          @click="logOut"
+        >
+          <v-icon>mdi-logout-variant</v-icon>
+        </v-btn>
+      </template>
     </v-app-bar>
     <v-content>
       <v-container>
@@ -65,6 +73,11 @@ export default class DefaultLayout extends Vue {
   font: {
     family: 'Pacifico', cursive;
     size: 1.8rem;
+  }
+}
+.ico-logo {
+  .v-toolbar__content & {
+    color: #333333;
   }
 }
 </style>
