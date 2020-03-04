@@ -73,6 +73,7 @@ export default class IndexPage extends Vue {
   @Getter('runningTasks') runningTasks
   @Getter('doneTasks') doneTasks
   @Getter('tasks') tasks
+  @Getter('user') user
   @Action('init') init
   @Action('addTask') addTask
   @Action('removeTask') removeTask

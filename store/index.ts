@@ -5,7 +5,7 @@ import { IndexState, TaskDetail } from '~/types/'
 import filteringTasks from '~/common/filteringTasks'
 
 const db = firebase.firestore()
-const taskRef = db.collection('task')
+const usersCollection = db.collection('users')
 
 export const state = (): IndexState => ({
   isLogin: false,
@@ -57,14 +57,20 @@ export const mutations: MutationTree<IndexState> = {
 }
 
 export const actions: ActionTree<IndexState, IndexState> = {
-  init: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('tasks', taskRef)
+  init: firestoreAction(async ({ bindFirestoreRef, rootGetters }) => {
+    const uid = rootGetters.user.uid
+    const userTasks = usersCollection.doc(uid).collection('tasks')
+
+    bindFirestoreRef('tasks', userTasks)
   }),
-  addTask: firestoreAction((context, taskItem) => {
-    taskRef.add(taskItem)
+  addTask: firestoreAction(({ rootGetters }, taskItem) => {
+    const uid = rootGetters.user.uid
+    const userTaskCollection = usersCollection.doc(uid).collection('tasks')
+
+    userTaskCollection.add(taskItem)
   }),
   removeTask: firestoreAction((context, id) => {
-    taskRef.doc(id).delete()
+    usersCollection.doc(id).delete()
   })
 }
 
