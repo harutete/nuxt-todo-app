@@ -34,9 +34,15 @@
             <li
               v-for="(tag, index) in tagList"
               :key="`tag${index}`"
-              :style="`background: ${tag.color}`"
             >
-              {{ tag.name }}
+              <v-chip
+                :color="tag.color"
+                outlined
+                :text-color="tag.color"
+              >
+                <v-icon left>mdi-label</v-icon>
+                {{ tag.name }}
+              </v-chip>
             </li>
           </ul>
           <ColorChip

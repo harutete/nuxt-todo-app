@@ -12,7 +12,7 @@
       >
       <div
         @click="appendCustomTag(color)"
-        :style="`background: ${color.code}`"
+        :style="`color: ${color.code}; border: 1px solid ${color.code}`"
         class="color-chip d-flex"
       >
         <label :for="`color-${color.name}`">
@@ -95,12 +95,10 @@ export default class ColorChip extends Vue {
 }
 .color-chip {
   cursor: pointer;
+  background: #FFFFFF;
   border-radius: 5px;
   color: #FFFFFF;
   padding: 5px 10px;
-  i {
-    color: #FFFFFF;
-  }
 }
 .fade {
   &-enter-active,
