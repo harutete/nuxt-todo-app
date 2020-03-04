@@ -52,10 +52,6 @@ export default class DefaultLayout extends Vue {
   private logOut () {
     firebase.auth().signOut()
   }
-
-  mounted () {
-    console.log(this.user.email)
-  }
 }
 </script>
 
