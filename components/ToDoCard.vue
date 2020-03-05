@@ -1,5 +1,9 @@
 <template>
-  <v-card>
+  <v-card
+    draggable="true"
+    @dragstart="moveItem"
+    @dragend="fixItem(task)"
+  >
     <v-card-title>
       <span @click="showModal">
         {{ task.title }}<v-icon>mdi-dock-window</v-icon>
@@ -64,6 +68,14 @@ export default class TodoCard extends Vue {
 
   private removeTaskItem (taskId: string | number): void {
     this.$emit('remove-task-item', taskId)
+  }
+
+  private moveItem (): void {
+    this.$emit('move-item')
+  }
+
+  private fixItem (task: { [key: string]: any }): void {
+    this.$emit('fix-item', task)
   }
 }
 </script>

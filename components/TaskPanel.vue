@@ -1,5 +1,8 @@
 <template>
-  <v-card>
+  <v-card
+    @dragover.prevent="movePanel"
+    @drop.prevent="changeStatus"
+  >
     <h2 class="title font-weight-bold mx-3 pt-3">
       {{ panelTitle }}
     </h2>
@@ -14,6 +17,8 @@
             <ToDoCard
               :task="task"
               @show-modal="showModal"
+              @move-item="moveItem"
+              @fix-item="fixItem($event)"
               @remove-task-item="removeTaskItem($event)"
             />
           </v-col>
@@ -45,6 +50,9 @@ export default class TaskPanel extends Vue {
   @Prop({ type: Array })
   tasks!: { [key: string]: any }[]
 
+  @Prop({ type: String })
+  status!: string
+
   isDialogOpen = false
 
   private showModal () {
@@ -53,6 +61,21 @@ export default class TaskPanel extends Vue {
 
   private removeTaskItem (taskId: string | number): void {
     this.$emit('remove-task-item', taskId)
+  }
+
+  private movePanel () {
+  }
+
+  private changeStatus () {
+    this.$emit('change-status')
+  }
+
+  private moveItem (): void {
+    this.$emit('move-item')
+  }
+
+  private fixItem (task: { [key: string]: any }): void {
+    this.$emit('fix-item', task)
   }
 }
 </script>

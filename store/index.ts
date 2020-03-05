@@ -69,6 +69,13 @@ export const actions: ActionTree<IndexState, IndexState> = {
 
     userTaskCollection.add(taskItem)
   }),
+  updateTask: firestoreAction((context, taskItem) => {
+    const uid = context.rootGetters.user.uid
+    const taskId = taskItem.id
+    const updatedTask = usersCollection.doc(uid).collection('tasks').doc(taskId)
+
+    updatedTask.update({ status: taskItem.status })
+  }),
   removeTask: firestoreAction((context, id) => {
     usersCollection.doc(id).delete()
   })

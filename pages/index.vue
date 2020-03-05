@@ -14,6 +14,9 @@
               <TaskPanel
                 panel-title="作業前"
                 :tasks="beforeTasks"
+                @move-item="moveItem"
+                @fix-item="fixItem($event)"
+                @change-status="changeStatus('before')"
                 @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
@@ -21,6 +24,9 @@
               <TaskPanel
                 panel-title="作業中"
                 :tasks="runningTasks"
+                @move-item="moveItem"
+                @fix-item="fixItem($event)"
+                @change-status="changeStatus('running')"
                 @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
@@ -28,6 +34,9 @@
               <TaskPanel
                 panel-title="完了"
                 :tasks="doneTasks"
+                @move-item="moveItem"
+                @fix-item="fixItem($event)"
+                @change-status="changeStatus('done')"
                 @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
@@ -76,6 +85,7 @@ export default class IndexPage extends Vue {
   @Getter('user') user
   @Action('init') init
   @Action('addTask') addTask
+  @Action('updateTask') updateTask
   @Action('removeTask') removeTask
   @Mutation('setTask') setTask
 
@@ -83,6 +93,7 @@ export default class IndexPage extends Vue {
   isLogin = true
   loader = null
   loading = false
+  movedItem: null | { [key: string]: any } = null
 
   private addTaskItem (tasks: { [key: string]: any }): void {
     this.addTask(tasks)
@@ -90,6 +101,27 @@ export default class IndexPage extends Vue {
 
   private removeTaskItem (taskId: string | number):void {
     this.removeTask(taskId)
+  }
+
+  private changeStatus (status: string): void | boolean {
+    if (this.movedItem === null || this.movedItem.status === status) {
+      return false
+    }
+    const state = status
+    const changeStatusItem = {
+      ...this.movedItem,
+      status: state
+    }
+
+    this.updateTask(changeStatusItem)
+  }
+
+  private moveItem (): void {
+    console.log('hoge')
+  }
+
+  private fixItem (item: { [key: string]: any }): void {
+    this.movedItem = item
   }
 
   async mounted () {
