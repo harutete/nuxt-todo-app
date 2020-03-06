@@ -15,6 +15,17 @@
         </v-btn>
       </template>
       <v-card class="pt-2 px-2 pb-5">
+        <div class="d-flex flex-row-reverse">
+          <v-btn
+            @click="close"
+            fab
+            outlined
+            small
+            class="mr-3"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
         <FormComponent @add-task-item="addTaskItem($event)" />
       </v-card>
     </v-dialog>
@@ -35,6 +46,10 @@ export default class AddTaskDialog extends Vue {
 
   private addTaskItem (tasks: { [key: string]: any }): void {
     this.$emit('add-task-item', tasks)
+  }
+
+  private close (): void {
+    this.dialog = false
   }
 }
 </script>

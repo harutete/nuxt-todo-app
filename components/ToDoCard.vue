@@ -6,7 +6,8 @@
   >
     <v-card-title>
       <span @click="showModal">
-        {{ task.title }}<v-icon>mdi-dock-window</v-icon>
+        {{ task.title }}
+        <v-icon>mdi-dock-window</v-icon>
       </span>
     </v-card-title>
     <v-card-text>
