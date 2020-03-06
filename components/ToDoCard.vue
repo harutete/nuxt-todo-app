@@ -17,6 +17,7 @@
           class="ma-2"
           :color="tag.color"
           outlined
+          label
           :text-color="tag.color"
         >
           <v-icon left>mdi-label</v-icon>
