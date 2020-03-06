@@ -8,7 +8,7 @@
         <v-btn
           v-on="on"
           outlined
-          color="blue-grey"
+          color="accent"
         >
           Add new task
           <v-icon class="ml-2">mdi-plus-circle-outline</v-icon>

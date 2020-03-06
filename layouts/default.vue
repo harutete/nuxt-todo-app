@@ -1,12 +1,10 @@
 <template>
-  <v-app dark>
+  <v-app color="info">
     <v-app-bar
-      :clipped-left="clipped"
+      color="primary"
       fixed
       app
-      justify="center"
     >
-      <v-spacer />
       <v-toolbar-title v-text="title" class="text-logo" />
       <v-icon
         class="ml-2 ico-logo"
@@ -74,10 +72,11 @@ export default class DefaultLayout extends Vue {
     family: 'Pacifico', cursive;
     size: 1.8rem;
   }
+  color: #FFFFFF;
 }
 .ico-logo {
   .v-toolbar__content & {
-    color: #333333;
+    color: #FFFFFF;
   }
 }
 </style>

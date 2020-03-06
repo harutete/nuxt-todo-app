@@ -37,8 +37,9 @@
             >
               <v-chip
                 :color="tag.color"
-                outlined
                 :text-color="tag.color"
+                outlined
+                label
               >
                 <v-icon left>mdi-label</v-icon>
                 {{ tag.name }}
@@ -226,7 +227,6 @@ export default class FormComponent extends Vue {
     color: #FFFFFF;
     font-size: 1rem;
     margin: 10px 0 0 10px;
-    padding: 2px 10px;
   }
 }
 </style>
