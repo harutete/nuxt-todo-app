@@ -7,7 +7,7 @@
       <div
         v-if="isLogin"
       >
-        <FormComponent @add-task-item="addTaskItem" />
+        <AddTaskDialog @add-task-item="addTaskItem" />
         <v-container fluid>
           <v-row>
             <v-col cols="12" md="4">
@@ -65,14 +65,14 @@ import { Vue, Component } from 'vue-property-decorator'
 import { Getter, Mutation, Action } from 'vuex-class'
 
 // Component
-import FormComponent from '~/components/FormComponent.vue'
+import AddTaskDialog from '~/components/AddTaskDialog.vue'
 import ModalContent from '~/components/ModalContent.vue'
 import TaskPanel from '~/components/TaskPanel.vue'
 
 @Component({
   middleware: 'checkAuthentication',
   components: {
-    FormComponent,
+    AddTaskDialog,
     ModalContent,
     TaskPanel
   }

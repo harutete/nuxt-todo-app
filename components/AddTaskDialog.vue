@@ -1,5 +1,8 @@
 <template>
-  <v-row justify="center">
+  <v-row
+    justify="center"
+    class="mt-3"
+  >
     <v-dialog v-model="dialog">
       <template v-slot:activator="{ on }">
         <v-btn
