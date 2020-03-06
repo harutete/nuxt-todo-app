@@ -3,7 +3,7 @@ import Vue from 'vue'
 const dateFormat = (date: number, format: string): string => {
   const d = new Date(date * 1000)
   const year = d.getFullYear().toString()
-  const month = (d.getMonth() + 1).toString()
+  const month = (d.getMonth()).toString()
   const day = d.getDate().toString()
   const hour = d.getHours().toString()
   const minute = d.getMinutes().toString()
