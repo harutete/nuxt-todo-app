@@ -46,6 +46,8 @@ export default class AddTaskDialog extends Vue {
 
   private addTaskItem (tasks: { [key: string]: any }): void {
     this.$emit('add-task-item', tasks)
+
+    this.dialog = false
   }
 
   private close (): void {
