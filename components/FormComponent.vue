@@ -107,11 +107,10 @@
     </v-container>
     <div class="text-center">
       <v-btn
-        x-large
-        color="blue-grey"
-        dark
-        class="mx-auto"
         @click="addTaskItem"
+        class="mx-auto"
+        outlined
+        color="blue-grey"
       >Submit</v-btn>
     </div>
   </v-form>
