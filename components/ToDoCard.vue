@@ -5,8 +5,8 @@
     @dragend="fixItem(task)"
   >
     <v-card-title
-       @click="showModal"
       class="d-flex justify-space-between"
+      @click="showModal"
     >
       <div>
         {{ task.title }}
@@ -26,7 +26,9 @@
           label
           :text-color="tag.color"
         >
-          <v-icon left>mdi-label</v-icon>
+          <v-icon left>
+            mdi-label
+          </v-icon>
           {{ tag.name }}
         </v-chip>
       </div>
@@ -54,11 +56,13 @@
             class="py-0 pr-0"
           >
             <v-btn
-              @click="removeTaskItem(task.id)"
               class="float-right"
               icon
+              @click="removeTaskItem(task.id)"
             >
-              <v-icon>mdi-trash-can-outline</v-icon>
+              <v-icon>
+                mdi-trash-can-outline
+              </v-icon>
             </v-btn>
           </v-col>
         </v-row>

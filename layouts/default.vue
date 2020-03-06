@@ -1,11 +1,14 @@
 <template>
-  <v-app color="info">
+  <v-app>
     <v-app-bar
       color="primary"
       fixed
       app
     >
-      <v-toolbar-title v-text="title" class="text-logo" />
+      <v-toolbar-title
+        class="text-logo"
+        v-text="title"
+      />
       <v-icon
         class="ml-2 ico-logo"
         :class="{'is-bound': !isLogin}"
@@ -15,14 +18,18 @@
       <v-spacer />
       <template v-if="isLogin">
         <p class="mb-0 mr-2">
-          <v-icon class="mr-1">mdi-account-circle-outline</v-icon>
+          <v-icon class="mr-1">
+            mdi-account-circle-outline
+          </v-icon>
           {{ user.displayName }}
         </p>
         <v-btn
           icon
           @click="logOut"
         >
-          <v-icon>mdi-logout-variant</v-icon>
+          <v-icon>
+            mdi-logout-variant
+          </v-icon>
         </v-btn>
       </template>
     </v-app-bar>

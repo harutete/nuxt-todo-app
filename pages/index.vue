@@ -45,12 +45,12 @@
       </div>
       <div v-else class="my-2">
         <v-btn
-          @click="logIn"
           :loading="loading"
           :disabled="loading"
           x-large
           color="primary"
           dark
+          @click="logIn"
         >
           Googleアカウントでログイン
         </v-btn>

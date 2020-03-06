@@ -8,25 +8,25 @@
           md="6"
         >
           <v-text-field
+            v-model="title"
             name="title"
             label="Title"
-            v-model="title"
-          ></v-text-field>
+          />
           <v-textarea
+            v-model="description"
             name="remarks"
             label="備考"
-            v-model="description"
-          ></v-textarea>
+          />
         </v-col>
         <v-col
           cols="12"
           md="6"
         >
           <v-text-field
+            v-model="tagText"
             name="tagText"
             label="Tag"
-            v-model="tagText"
-          ></v-text-field>
+          />
           <ul
             v-show="tagList.length"
             class="list-tag"
@@ -41,7 +41,9 @@
                 outlined
                 label
               >
-                <v-icon left>mdi-label</v-icon>
+                <v-icon left>
+                  mdi-label
+                </v-icon>
                 {{ tag.name }}
               </v-chip>
             </li>
@@ -73,13 +75,13 @@
                 prepend-icon="mdi-calendar-clock"
                 @blur="date = parseDate(dateFormatted)"
                 v-on="on"
-              ></v-text-field>
+              />
             </template>
             <v-date-picker
               v-model="date"
               no-title
               @input="menu = false"
-            ></v-date-picker>
+            />
           </v-menu>
           <v-row>
             <v-col
@@ -87,20 +89,20 @@
               md="6"
             >
               <v-select
+                v-model="hour"
                 :items="hours"
                 label="Hours"
-                v-model="hour"
-              ></v-select>
+              />
             </v-col>
             <v-col
               cols="12"
               md="6"
             >
               <v-select
+                v-model="minute"
                 :items="minutes"
                 label="Minutes"
-                v-model="minute"
-              ></v-select>
+              />
             </v-col>
           </v-row>
         </v-col>
@@ -108,11 +110,13 @@
     </v-container>
     <div class="text-center">
       <v-btn
-        @click="addTaskItem"
         class="mx-auto"
         outlined
         color="blue-grey"
-      >Submit</v-btn>
+        @click="addTaskItem"
+      >
+        Submit
+      </v-btn>
     </div>
   </v-form>
 </template>

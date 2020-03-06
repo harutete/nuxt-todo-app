@@ -11,9 +11,9 @@
         hidden
       >
       <div
-        @click="appendCustomTag(color)"
         :style="`color: ${color.code}; border: 1px solid ${color.code}`"
         class="color-chip d-flex"
+        @click="appendCustomTag(color)"
       >
         <label :for="`color-${color.name}`">
           {{ text }}

@@ -6,22 +6,24 @@
     <v-dialog v-model="dialog">
       <template v-slot:activator="{ on }">
         <v-btn
-          v-on="on"
           outlined
           color="accent"
+          v-on="on"
         >
           Add new task
-          <v-icon class="ml-2">mdi-plus-circle-outline</v-icon>
+          <v-icon class="ml-2">
+            mdi-plus-circle-outline
+          </v-icon>
         </v-btn>
       </template>
       <v-card class="pt-2 px-2 pb-5">
         <div class="d-flex flex-row-reverse">
           <v-btn
-            @click="close"
             fab
             outlined
             small
             class="mr-3"
+            @click="close"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>

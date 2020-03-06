@@ -1,16 +1,20 @@
 <template>
   <div class="content-login">
-    <p class="text-lead">Welcome</p>
+    <p class="text-lead">
+      Welcome
+    </p>
     <div class="content-login-button-area">
       <v-btn
-        @click="logIn"
         outlined
         color="indigo"
         class="mt-4"
+        @click="logIn"
       >
         Login
       </v-btn>
-      <p class="mt-2">Login with your Google account</p>
+      <p class="mt-2">
+        Login with your Google account
+      </p>
     </div>
   </div>
 </template>
