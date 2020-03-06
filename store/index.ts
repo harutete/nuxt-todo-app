@@ -44,39 +44,39 @@ export const getters: GetterTree<IndexState, IndexState> = {
 }
 
 export const mutations: MutationTree<IndexState> = {
-  setLoggedIn: (state: IndexState, isLogin: boolean) => {
+  setLoggedIn: (state: IndexState, isLogin: boolean): void => {
     state.isLogin = isLogin
   },
   setUserData: (state: IndexState, user): void => {
     state.user = user
   },
-  setTask: (state: IndexState, tasks: any) => {
+  setTask: (state: IndexState, tasks: any): void => {
     state.tasks = tasks
   },
   ...vuexfireMutations
 }
 
 export const actions: ActionTree<IndexState, IndexState> = {
-  init: firestoreAction(async ({ bindFirestoreRef, rootGetters }) => {
+  init: firestoreAction(async ({ bindFirestoreRef, rootGetters }): Promise<void> => {
     const uid = rootGetters.user.uid
     const userTasks = usersCollection.doc(uid).collection('tasks')
 
     bindFirestoreRef('tasks', userTasks)
   }),
-  addTask: firestoreAction(({ rootGetters }, taskItem) => {
+  addTask: firestoreAction(({ rootGetters }, taskItem): void => {
     const uid = rootGetters.user.uid
     const userTaskCollection = usersCollection.doc(uid).collection('tasks')
 
     userTaskCollection.add(taskItem)
   }),
-  updateTask: firestoreAction((context, taskItem) => {
+  updateTask: firestoreAction((context, taskItem): void => {
     const uid = context.rootGetters.user.uid
     const taskId = taskItem.id
     const updatedTask = usersCollection.doc(uid).collection('tasks').doc(taskId)
 
     updatedTask.update({ status: taskItem.status })
   }),
-  removeTask: firestoreAction((context, id) => {
+  removeTask: firestoreAction((context, id): void => {
     usersCollection.doc(id).delete()
   })
 }
