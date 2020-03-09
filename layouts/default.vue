@@ -39,7 +39,7 @@
       </v-container>
     </v-content>
     <v-footer app>
-      <div class="text-center">
+      <div class="ma-auto">
         <small>&copy; 2019</small>
       </div>
     </v-footer>
