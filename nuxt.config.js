@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   mode: 'spa',
   /*
@@ -65,9 +63,8 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: false,
       themes: {
-        dark: {
+        light: {
           primary: '#FF7260',
           accent: '#9BD7D5',
           secondary: '#FF4B33',

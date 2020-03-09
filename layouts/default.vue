@@ -39,7 +39,9 @@
       </v-container>
     </v-content>
     <v-footer app>
-      <small>&copy; 2019</small>
+      <div class="text-center">
+        <small>&copy; 2019</small>
+      </div>
     </v-footer>
   </v-app>
 </template>
