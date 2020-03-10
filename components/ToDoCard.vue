@@ -1,5 +1,6 @@
 <template>
   <v-card
+    outlined
     draggable="true"
     @dragstart="moveItem"
     @dragend="fixItem(task)"

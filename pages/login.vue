@@ -6,13 +6,13 @@
     <div class="content-login-button-area">
       <v-btn
         outlined
-        color="indigo"
+        color="accent"
         class="mt-4"
         @click="logIn"
       >
         Login
       </v-btn>
-      <p class="mt-2">
+      <p class="mt-6">
         Login with your Google account
       </p>
     </div>

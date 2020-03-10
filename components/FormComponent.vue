@@ -112,7 +112,7 @@
       <v-btn
         class="mx-auto"
         outlined
-        color="blue-grey"
+        color="accent"
         @click="addTaskItem"
       >
         Submit

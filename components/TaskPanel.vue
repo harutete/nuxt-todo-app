@@ -1,5 +1,6 @@
 <template>
   <v-card
+    outlined
     color="accent"
     @dragover.prevent="movePanel"
     @drop.prevent="changeStatus"
