@@ -86,7 +86,8 @@ export default class TodoCard extends Vue {
     this.$emit('show-modal')
   }
 
-  private removeTaskItem (taskId: string | number): void {
+  private removeTaskItem (taskId: string): void {
+    console.log(taskId)
     this.$emit('remove-task-item', taskId)
   }
 

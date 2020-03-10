@@ -4,9 +4,8 @@ const checkTerm = (tasks: TaskDetail[]) => {
   const now = new Date().getTime()
 
   const termCheckedTasks = tasks.map((item: TaskDetail) => {
-    console.log(new Date(item.ended_ms))
+    // TODO 調査:削除するたびにcheckTerm呼ばれてる
     if (item.ended_ms < now) {
-      console.log(item.ended_ms)
       item.is_expired = true
     } else {
       item.is_expired = false

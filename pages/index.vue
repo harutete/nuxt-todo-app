@@ -99,7 +99,7 @@ export default class IndexPage extends Vue {
     this.addTask(tasks)
   }
 
-  private removeTaskItem (taskId: string | number):void {
+  private removeTaskItem (taskId: string):void {
     this.removeTask(taskId)
   }
 

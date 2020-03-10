@@ -3,7 +3,6 @@ import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
 import { IndexState, TaskDetail } from '~/types/'
 import filteringTasks from '~/common/filteringTasks'
-import termCheckedTasks from '~/common/checkTerm'
 import checkTerm from '~/common/checkTerm'
 
 const db = firebase.firestore()
@@ -80,8 +79,9 @@ export const actions: ActionTree<IndexState, IndexState> = {
 
     updatedTask.update({ status: taskItem.status })
   }),
-  removeTask: firestoreAction((context, id): void => {
-    usersCollection.doc(id).delete()
+  removeTask: firestoreAction(({ rootGetters }, id): void => {
+    const uid = rootGetters.user.uid
+    usersCollection.doc(uid).collection('tasks').doc(id).delete()
   })
 }
 

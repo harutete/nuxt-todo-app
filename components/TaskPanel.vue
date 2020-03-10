@@ -59,7 +59,7 @@ export default class TaskPanel extends Vue {
     this.isDialogOpen = true
   }
 
-  private removeTaskItem (taskId: string | number): void {
+  private removeTaskItem (taskId: string): void {
     this.$emit('remove-task-item', taskId)
   }
 

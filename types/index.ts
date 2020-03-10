@@ -1,5 +1,5 @@
 export interface TaskDetail {
-  id: number | null,
+  id: string | null,
   title: string | null,
   description: string | null,
   ended_date: { seconds: number, nanoseconds: number } | null,
