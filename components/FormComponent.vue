@@ -164,7 +164,6 @@ export default class FormComponent extends Vue {
     const hour = this.hour !== null ? parseInt(this.hour, 10) : 0
     const minute = this.minute !== null ? parseInt(this.minute, 10) : 0
 
-    console.log(new Date(year, month, day, hour, minute))
     return {
       id: 0,
       title: this.title,
