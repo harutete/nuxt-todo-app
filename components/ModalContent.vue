@@ -16,8 +16,7 @@
           </v-card-title>
           <v-divider />
           <v-card-text>
-            <p>ここに備考が入る</p>
-            <!-- TODO slotに置き換える -->
+            {{ task.description }}
           </v-card-text>
         </v-card>
       </v-row>
