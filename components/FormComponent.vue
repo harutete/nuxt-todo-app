@@ -159,11 +159,12 @@ export default class FormComponent extends Vue {
   get setTaskItem (): { [key: string]: any } {
     const date = this.date.split('-')
     const year = parseInt(date[0], 10)
-    const month = parseInt(date[1], 10)
+    const month = parseInt(date[1], 10) - 1 // Dateオブジェクトに変換される際に`monthIndex`として扱われるので1引く
     const day = parseInt(date[2], 10)
     const hour = this.hour !== null ? parseInt(this.hour, 10) : 0
     const minute = this.minute !== null ? parseInt(this.minute, 10) : 0
 
+    console.log(new Date(year, month, day, hour, minute))
     return {
       id: 0,
       title: this.title,

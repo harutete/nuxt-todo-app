@@ -4,7 +4,7 @@ const filteringTasks = (tasks: TaskDetail[], terms: string): TaskDetail[] => {
   const filteredTasks = tasks
     .map((item: TaskDetail) => {
       const period = item.ended_date.seconds
-      item.ended_ms = period * 1000
+      item.ended_ms = new Date(period * 1000).getTime()
       return item
     })
     .filter((item: TaskDetail) =>

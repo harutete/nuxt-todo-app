@@ -3,6 +3,8 @@ import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
 import { IndexState, TaskDetail } from '~/types/'
 import filteringTasks from '~/common/filteringTasks'
+import termCheckedTasks from '~/common/checkTerm'
+import checkTerm from '~/common/checkTerm'
 
 const db = firebase.firestore()
 const usersCollection = db.collection('users')
@@ -27,13 +29,15 @@ export const getters: GetterTree<IndexState, IndexState> = {
   user: state => state.user,
   beforeTasks: (state: IndexState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
+    const filteringtask = filteringTasks(state.tasks, 'before')
 
-    return filteringTasks(state.tasks, 'before')
+    return checkTerm(filteringtask)
   },
   runningTasks: (state: IndexState): TaskDetail[] | undefined => {
     if (state.tasks === null) return
+    const filteringtask = filteringTasks(state.tasks, 'running')
 
-    return filteringTasks(state.tasks, 'running')
+    return checkTerm(filteringtask)
   },
   doneTasks: (state: IndexState): TaskDetail[] | undefined => {
     if (state.tasks === null) return

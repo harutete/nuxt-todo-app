@@ -47,7 +47,10 @@
             cols="6"
             class="py-0 pl-0"
           >
-            <p class="mb-0">
+            <p
+              class="mb-0"
+              :class="{ 'red--text': task.is_expired }"
+            >
               {{ $dateFormat(task.ended_date.seconds, 'YYYY/MM/DD hh時mm分') }}
             </p>
           </v-col>
