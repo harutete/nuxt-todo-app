@@ -11,8 +11,10 @@
     <v-container>
       <v-row justify="center">
         <v-card light>
-          <v-card-title>やることタイトル(必須)</v-card-title>
-          <v-divider></v-divider>
+          <v-card-title>
+            {{ task.title }}
+          </v-card-title>
+          <v-divider />
           <v-card-text>
             <p>ここに備考が入る</p>
             <!-- TODO slotに置き換える -->
@@ -24,10 +26,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Prop, Component } from 'vue-property-decorator'
+import { SortedTaskDetail } from '~/types'
 
 @Component
 export default class ModalContent extends Vue {
+  @Prop({ type: Object })
+  task!: SortedTaskDetail
+
   private closeModal (): void {
     this.$emit('close-modal')
   }

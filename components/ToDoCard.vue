@@ -9,7 +9,7 @@
   >
     <v-card-title
       class="d-flex justify-space-between"
-      @click="showModal"
+      @click="showModal(task)"
     >
       <div>
         {{ task.title }}
@@ -79,14 +79,15 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
+import { SortedTaskDetail } from '~/types'
 
 @Component
 export default class TodoCard extends Vue {
   @Prop({ type: Object })
   task!: { [key: string]: any }
 
-  private showModal () {
-    this.$emit('show-modal')
+  private showModal (task: SortedTaskDetail) {
+    this.$emit('show-modal', task)
   }
 
   private removeTaskItem (taskId: string): void {

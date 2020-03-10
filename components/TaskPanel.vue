@@ -18,7 +18,7 @@
           >
             <ToDoCard
               :task="task"
-              @show-modal="showModal"
+              @show-modal="showModal($event)"
               @move-item="moveItem"
               @fix-item="fixItem($event)"
               @remove-task-item="removeTaskItem($event)"
@@ -38,6 +38,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
+import { SortedTaskDetail } from '~/types'
 import ToDoCard from '~/components/ToDoCard.vue'
 
 @Component({
@@ -57,8 +58,8 @@ export default class TaskPanel extends Vue {
 
   isDialogOpen = false
 
-  private showModal () {
-    this.$emit('show-modal')
+  private showModal (task: SortedTaskDetail) {
+    this.$emit('show-modal', task)
   }
 
   private removeTaskItem (taskId: string): void {
