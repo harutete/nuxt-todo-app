@@ -2,10 +2,10 @@
   <v-card
     outlined
     draggable="true"
-    @dragstart="moveItem"
-    @dragend="fixItem(task)"
     class="card-task"
     :class="{ 'is-done': task.status === 'done' }"
+    @dragstart="moveItem"
+    @dragend="fixItem(task)"
   >
     <v-card-title
       class="d-flex justify-space-between"

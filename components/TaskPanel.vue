@@ -29,7 +29,9 @@
           v-else
           cols="12"
         >
-          <p class="white--text">タスクはありません</p>
+          <p class="white--text">
+            タスクはありません
+          </p>
         </v-col>
       </v-row>
     </v-container>
