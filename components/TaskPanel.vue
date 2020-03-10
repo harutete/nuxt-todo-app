@@ -27,7 +27,7 @@
           v-else
           cols="12"
         >
-          <p>作業前のタスクはありません</p>
+          <p>タスクはありません</p>
         </v-col>
       </v-row>
     </v-container>
