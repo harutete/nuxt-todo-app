@@ -1,9 +1,9 @@
-import { TaskDetail } from '~/types/'
+import { SortedTaskDetail } from '~/types/'
 
-const checkTerm = (tasks: TaskDetail[]) => {
+const checkTerm = (tasks: SortedTaskDetail[]) => {
   const now = new Date().getTime()
 
-  const termCheckedTasks = tasks.map((item: TaskDetail) => {
+  const termCheckedTasks = tasks.map((item: SortedTaskDetail) => {
     // TODO 調査:削除するたびにcheckTerm呼ばれてる
     if (item.ended_ms < now) {
       item.is_expired = true
