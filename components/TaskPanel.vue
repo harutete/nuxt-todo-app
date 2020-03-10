@@ -1,9 +1,10 @@
 <template>
   <v-card
+    color="accent"
     @dragover.prevent="movePanel"
     @drop.prevent="changeStatus"
   >
-    <h2 class="title font-weight-bold mx-3 pt-3">
+    <h2 class="title font-weight-bold mx-3 pt-3 white--text">
       {{ panelTitle }}
     </h2>
     <v-container>
@@ -27,7 +28,7 @@
           v-else
           cols="12"
         >
-          <p>タスクはありません</p>
+          <p class="white--text">タスクはありません</p>
         </v-col>
       </v-row>
     </v-container>

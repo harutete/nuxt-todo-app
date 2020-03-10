@@ -74,7 +74,7 @@ export default class DefaultLayout extends Vue {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c|Pacifico&display=swap');
-.v-application--wrap
+.v-application--wrap,
 .v-application .v-application--wrap .title {
   font-family: 'M PLUS Rounded 1c', sans-serif !important;
 }

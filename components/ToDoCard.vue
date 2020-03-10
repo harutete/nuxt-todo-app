@@ -3,6 +3,7 @@
     draggable="true"
     @dragstart="moveItem"
     @dragend="fixItem(task)"
+    class="card-task"
     :class="{ 'is-done': task.status === 'done' }"
   >
     <v-card-title
@@ -115,7 +116,19 @@ export default class TodoCard extends Vue {
   color: #FFFFFF;
   padding: 5px 10px;
 }
+.card-task {
+  overflow: hidden;
+}
 .is-done {
-  background: #ECECEC;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(102, 102, 102, .6);
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
