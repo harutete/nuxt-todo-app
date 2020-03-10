@@ -58,7 +58,7 @@ export default class TaskPanel extends Vue {
   isDialogOpen = false
 
   private showModal () {
-    this.isDialogOpen = true
+    this.$emit('show-modal')
   }
 
   private removeTaskItem (taskId: string): void {

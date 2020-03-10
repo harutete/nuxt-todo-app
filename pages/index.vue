@@ -14,6 +14,7 @@
               <TaskPanel
                 panel-title="作業前"
                 :tasks="beforeTasks"
+                @show-modal="showModal"
                 @move-item="moveItem"
                 @fix-item="fixItem($event)"
                 @change-status="changeStatus('before')"
@@ -55,7 +56,10 @@
           Googleアカウントでログイン
         </v-btn>
       </div>
-      <!-- <ModalContent :is-dialog-open="isDialogOpen" /> -->
+      <ModalContent
+        v-show="isDialogOpen"
+        @close-modal="closeModal"
+      />
     </template>
   </div>
 </template>
@@ -94,6 +98,15 @@ export default class IndexPage extends Vue {
   loader = null
   loading = false
   movedItem: null | { [key: string]: any } = null
+  isDialogOpen = false
+
+  private showModal (): void {
+    this.isDialogOpen = true
+  }
+
+  private closeModal (): void {
+    this.isDialogOpen = false
+  }
 
   private addTaskItem (tasks: { [key: string]: any }): void {
     this.addTask(tasks)
