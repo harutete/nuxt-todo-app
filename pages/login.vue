@@ -1,22 +1,34 @@
 <template>
-  <div class="content-login">
-    <p class="text-lead">
-      Welcome
-    </p>
-    <div class="content-login-button-area">
-      <v-btn
+<v-container>
+  <v-row justify="center">
+    <v-col
+      cols="12"
+      sm="6"
+    >
+      <v-card
         outlined
-        color="accent"
-        class="mt-4"
-        @click="logIn"
+        class="d-flex flex-column align-center py-12"
       >
-        Login
-      </v-btn>
-      <p class="mt-6">
-        Login with your Google account
-      </p>
-    </div>
-  </div>
+        <p class="text-lead">
+          Welcome
+        </p>
+        <div class="content-login-button-area">
+          <v-btn
+            outlined
+            color="accent"
+            class="mt-4"
+            @click="logIn"
+          >
+            Login
+          </v-btn>
+          <p class="mt-6">
+            Login with your Google account
+          </p>
+        </div>
+      </v-card>
+    </v-col>
+  </v-row>
+</v-container>
 </template>
 
 <script lang="ts">
