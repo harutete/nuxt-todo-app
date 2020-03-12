@@ -9,8 +9,10 @@
         >
           <v-text-field
             v-model="title"
+            :rules="[v => !!v || 'Title is required']"
             name="title"
             label="Title"
+            required
           />
           <v-textarea
             v-model="description"
@@ -91,7 +93,9 @@
               <v-select
                 v-model="hour"
                 :items="hours"
-                label="Hours"
+                :rules="[v => !!v || 'Hour is required']"
+                label="Hour"
+                required
               />
             </v-col>
             <v-col
@@ -101,7 +105,9 @@
               <v-select
                 v-model="minute"
                 :items="minutes"
+                :rules="[v => !!v || 'minutes is required']"
                 label="Minutes"
+                required
               />
             </v-col>
           </v-row>
@@ -141,7 +147,7 @@ export default class FormComponent extends Vue {
   description: string | null = null
   hour: string | null = null
   minute: string | null = null
-  tagList: { name?: string, color?: string }[] = [] //TODO 型指定見直す
+  tagList: { name?: string, color?: string }[] = [] // TODO 型指定見直す
 
   @Watch('date')
   watchDate (): void {
