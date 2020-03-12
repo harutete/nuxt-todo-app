@@ -3,6 +3,8 @@ import { TaskDetail } from '~/types/'
 const filteringTasks = (tasks: TaskDetail[], terms: string): TaskDetail[] => {
   const filteredTasks = tasks
     .map((item: TaskDetail) => {
+      if (item.ended_date === null) return item
+
       const period = item.ended_date.seconds
       item.ended_ms = new Date(period * 1000).getTime()
       return item

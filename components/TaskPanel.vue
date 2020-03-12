@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { SortedTaskDetail } from '~/types'
+import { TaskDetail } from '~/types'
 import ToDoCard from '~/components/ToDoCard.vue'
 
 @Component({
@@ -60,7 +60,7 @@ export default class TaskPanel extends Vue {
 
   isDialogOpen = false
 
-  private showModal (task: SortedTaskDetail) {
+  private showModal (task: TaskDetail) {
     this.$emit('show-modal', task)
   }
 

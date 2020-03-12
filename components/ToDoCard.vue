@@ -79,14 +79,14 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { SortedTaskDetail } from '~/types'
+import { TaskDetail } from '~/types'
 
 @Component
 export default class TodoCard extends Vue {
   @Prop({ type: Object })
   task!: { [key: string]: any }
 
-  private showModal (task: SortedTaskDetail) {
+  private showModal (task: TaskDetail) {
     this.$emit('show-modal', task)
   }
 

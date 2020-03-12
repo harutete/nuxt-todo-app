@@ -28,12 +28,12 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from 'vue-property-decorator'
-import { SortedTaskDetail } from '~/types'
+import { TaskDetail } from '~/types'
 
 @Component
 export default class ModalContent extends Vue {
   @Prop({ type: Object })
-  task!: SortedTaskDetail
+  task!: TaskDetail
 
   private closeModal (): void {
     this.$emit('close-modal')

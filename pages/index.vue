@@ -73,7 +73,7 @@ import { Getter, Mutation, Action } from 'vuex-class'
 import AddTaskDialog from '~/components/AddTaskDialog.vue'
 import ModalContent from '~/components/ModalContent.vue'
 import TaskPanel from '~/components/TaskPanel.vue'
-import { SortedTaskDetail } from '~/types'
+import { TaskDetail } from '~/types'
 
 @Component({
   middleware: 'checkAuthentication',
@@ -101,9 +101,9 @@ export default class IndexPage extends Vue {
   loading = false
   movedItem: null | { [key: string]: any } = null
   isDialogOpen = false
-  activeTask: null | SortedTaskDetail = null
+  activeTask: null | TaskDetail = null
 
-  private showModal (task: SortedTaskDetail): void {
+  private showModal (task: TaskDetail): void {
     this.activeTask = task
     this.isDialogOpen = true
   }

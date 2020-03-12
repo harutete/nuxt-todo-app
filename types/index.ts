@@ -9,11 +9,6 @@ export interface TaskDetail {
   ended_ms?: number
 }
 
-export interface SortedTaskDetail extends TaskDetail {
-  is_expired: boolean,
-  ended_ms: number
-}
-
 export interface IndexState {
   isLogin?: boolean,
   isLoading?: boolean,

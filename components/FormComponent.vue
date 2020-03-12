@@ -141,7 +141,7 @@ export default class FormComponent extends Vue {
   description: string | null = null
   hour: string | null = null
   minute: string | null = null
-  tagList: [] | { [key: string]: any }[] = []
+  tagList: { name?: string, color?: string }[] = [] //TODO 型指定見直す
 
   @Watch('date')
   watchDate (): void {
