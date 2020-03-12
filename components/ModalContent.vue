@@ -43,7 +43,7 @@ export default class ModalContent extends Vue {
 
 <style scoped lang="scss">
 .modal-content-wrap {
-  width: 80%;
+  max-width: 90%;
   min-width: 280px;
 }
 </style>
