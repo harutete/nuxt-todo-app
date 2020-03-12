@@ -8,13 +8,13 @@
     @dragend="fixItem(task)"
   >
     <v-card-title
-      class="d-flex justify-space-between"
+      :class="{'d-flex justify-space-between title-modal-open': task.description}"
       @click="showModal(task)"
     >
       <div>
         {{ task.title }}
       </div>
-      <div>
+      <div v-if="task.description">
         <v-icon>mdi-dock-window</v-icon>
       </div>
     </v-card-title>
@@ -105,6 +105,9 @@ export default class TodoCard extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.title-modal-open {
+  cursor: pointer;
+}
 .list-color-chip {
   list-style: none;
   padding: 0;

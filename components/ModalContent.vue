@@ -8,17 +8,19 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </div>
-    <v-container>
+    <v-container class="modal-content-wrap">
       <v-row justify="center">
-        <v-card light>
-          <v-card-title>
-            {{ task.title }}
-          </v-card-title>
-          <v-divider />
-          <v-card-text>
-            {{ task.description }}
-          </v-card-text>
-        </v-card>
+        <v-col cols="12">
+          <v-card light>
+            <v-card-title>
+              {{ task.title }}
+            </v-card-title>
+            <v-divider />
+            <v-card-text>
+              {{ task.description }}
+            </v-card-text>
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </v-overlay>
@@ -38,3 +40,10 @@ export default class ModalContent extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.modal-content-wrap {
+  width: 80%;
+  min-width: 280px;
+}
+</style>

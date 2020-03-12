@@ -10,7 +10,7 @@
         <AddTaskDialog @add-task-item="addTaskItem" />
         <v-container fluid>
           <v-row>
-            <v-col cols="12" md="4">
+            <v-col cols="12" md="8">
               <TaskPanel
                 panel-title="作業前"
                 :tasks="beforeTasks"
