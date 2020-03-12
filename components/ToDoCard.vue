@@ -139,7 +139,7 @@ export default class TodoCard extends Vue {
 .card-description {
   position: relative;
   overflow: hidden;
-  max-height: 50px;
+  height: 45px;
   &::before {
     content: '';
     position: absolute;
@@ -148,7 +148,7 @@ export default class TodoCard extends Vue {
     background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 80%, #FFFFFF 100%);
     width: 100%;
     height: 100%;
-    max-height: 40px;
+    max-height: 20px;
   }
 }
 </style>
