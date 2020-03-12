@@ -37,7 +37,7 @@
       </div>
       <div
         v-if="task.description"
-        class="mt-4 text--primary"
+        class="mt-4 text--primary card-description"
       >
         {{ task.description }}
       </div>
@@ -134,6 +134,21 @@ export default class TodoCard extends Vue {
     background: rgba(102, 102, 102, .6);
     width: 100%;
     height: 100%;
+  }
+}
+.card-description {
+  position: relative;
+  overflow: hidden;
+  max-height: 50px;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.9) 80%, #FFFFFF 100%);
+    width: 100%;
+    height: 100%;
+    max-height: 40px;
   }
 }
 </style>
