@@ -1,4 +1,4 @@
-import { GetterTree, ActionContext, ActionTree, MutationTree } from 'vuex'
+import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
 import { IndexState, TaskDetail } from '~/types/'
