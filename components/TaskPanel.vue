@@ -19,7 +19,6 @@
             <ToDoCard
               :task="task"
               @show-modal="showModal($event)"
-              @move-item="moveItem"
               @fix-item="fixItem($event)"
               @remove-task-item="removeTaskItem($event)"
             />
@@ -69,14 +68,11 @@ export default class TaskPanel extends Vue {
   }
 
   private movePanel () {
+    this.$emit('move-panel')
   }
 
   private changeStatus () {
     this.$emit('change-status')
-  }
-
-  private moveItem (): void {
-    this.$emit('move-item')
   }
 
   private fixItem (task: { [key: string]: any }): void {

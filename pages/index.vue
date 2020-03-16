@@ -15,7 +15,6 @@
                 panel-title="作業前"
                 :tasks="beforeTasks"
                 @show-modal="showModal($event)"
-                @move-item="moveItem"
                 @fix-item="fixItem($event)"
                 @change-status="changeStatus('before')"
                 @remove-task-item="removeTaskItem($event)"
@@ -25,7 +24,6 @@
               <TaskPanel
                 panel-title="作業中"
                 :tasks="runningTasks"
-                @move-item="moveItem"
                 @fix-item="fixItem($event)"
                 @change-status="changeStatus('running')"
                 @remove-task-item="removeTaskItem($event)"
@@ -35,7 +33,6 @@
               <TaskPanel
                 panel-title="完了"
                 :tasks="doneTasks"
-                @move-item="moveItem"
                 @fix-item="fixItem($event)"
                 @change-status="changeStatus('done')"
                 @remove-task-item="removeTaskItem($event)"
@@ -132,10 +129,6 @@ export default class IndexPage extends Vue {
     }
 
     this.updateTask(changeStatusItem)
-  }
-
-  private moveItem (): void {
-    console.log('hoge')
   }
 
   private fixItem (item: { [key: string]: any }): void {
