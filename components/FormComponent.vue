@@ -1,6 +1,7 @@
 <template>
   <v-form>
     <v-container fluid>
+      <p class="caption red--text">* のついた項目は入力必須です。</p>
       <v-row>
         <v-col
           align="center"
@@ -11,7 +12,7 @@
             v-model="title"
             :rules="[v => !!v || 'Title is required']"
             name="title"
-            label="Title"
+            label="Title *"
             required
           />
           <v-textarea
@@ -71,7 +72,7 @@
             <template v-slot:activator="{ on }">
               <v-text-field
                 v-model="dateFormatted"
-                label="Date"
+                label="Date *"
                 hint="MM/DD/YYYY"
                 persistent-hint
                 prepend-icon="mdi-calendar-clock"
@@ -94,7 +95,7 @@
                 v-model="hour"
                 :items="hours"
                 :rules="[v => !!v || 'Hour is required']"
-                label="Hour"
+                label="Hour *"
                 required
               />
             </v-col>
@@ -106,7 +107,7 @@
                 v-model="minute"
                 :items="minutes"
                 :rules="[v => !!v || 'minutes is required']"
-                label="Minutes"
+                label="Minutes *"
                 required
               />
             </v-col>
