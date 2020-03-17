@@ -1,7 +1,7 @@
 <template>
   <v-form>
     <v-container fluid>
-      <p class="caption red--text">* のついた項目は入力必須です。</p>
+      <p class="caption red--text">(*) is Required fields</p>
       <v-row>
         <v-col
           align="center"
