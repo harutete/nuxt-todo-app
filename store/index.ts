@@ -81,7 +81,9 @@ export const actions: ActionTree<IndexState, IndexState> = {
   }),
   removeTask: firestoreAction(({ rootGetters }, id): void => {
     const uid = rootGetters.user.uid
-    usersCollection.doc(uid).collection('tasks').doc(id).delete()
+    const userTaskCollection = usersCollection.doc(uid).collection('tasks')
+
+    userTaskCollection.doc(id).delete()
   })
 }
 
