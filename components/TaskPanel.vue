@@ -2,8 +2,7 @@
   <v-card
     outlined
     color="accent"
-    @dragover.prevent="movePanel"
-    @drop.prevent="changeStatus"
+    @dragenter="dragEnter"
   >
     <h2 class="title font-weight-bold mx-3 pt-3 white--text">
       {{ panelTitle }}
@@ -19,8 +18,8 @@
             <ToDoCard
               :task="task"
               @show-modal="showModal($event)"
-              @move-item="moveItem($event)"
-              @fix-item="fixItem($event)"
+              @drag-start="dragStart($event)"
+              @drag-end="dragEnd($event)"
               @remove-task-item="removeTaskItem($event)"
             />
           </v-col>
@@ -68,20 +67,16 @@ export default class TaskPanel extends Vue {
     this.$emit('remove-task-item', taskId)
   }
 
-  private movePanel (event: any) {
-    event.target.classList.add('doropingPanel')
+  private dragEnter () {
+    this.$emit('drag-enter')
   }
 
-  private changeStatus () {
-    this.$emit('change-status')
+  private dragStart (task: { [key: string]: any }): void {
+    this.$emit('drag-start', task)
   }
 
-  private moveItem (task: { [key: string]: any }): void {
-    this.$emit('move-item', task)
-  }
-
-  private fixItem (task: { [key: string]: any }): void {
-    this.$emit('fix-item', task)
+  private dragEnd (): void {
+    this.$emit('drag-end')
   }
 }
 </script>

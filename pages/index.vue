@@ -15,9 +15,9 @@
                 panel-title="作業前"
                 :tasks="beforeTasks"
                 @show-modal="showModal($event)"
-                @move-item="moveItem($event)"
-                @fix-item="fixItem($event)"
-                @change-status="changeStatus('before')"
+                @drag-start="dragStart($event)"
+                @drag-enter="dragEnter('before')"
+                @drag-end="dragEnd($event)"
                 @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
@@ -25,9 +25,9 @@
               <TaskPanel
                 panel-title="作業中"
                 :tasks="runningTasks"
-                @move-item="moveItem($event)"
-                @fix-item="fixItem($event)"
-                @change-status="changeStatus('running')"
+                @drag-start="dragStart($event)"
+                @drag-enter="dragEnter('running')"
+                @drag-end="dragEnd($event)"
                 @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
@@ -35,9 +35,9 @@
               <TaskPanel
                 panel-title="完了"
                 :tasks="doneTasks"
-                @move-item="moveItem($event)"
-                @fix-item="fixItem($event)"
-                @change-status="changeStatus('done')"
+                @drag-start="dragStart($event)"
+                @drag-enter="dragEnter('done')"
+                @drag-end="dragEnd($event)"
                 @remove-task-item="removeTaskItem($event)"
               />
             </v-col>
@@ -99,7 +99,8 @@ export default class IndexPage extends Vue {
   isLogin = true
   loader = null
   loading = false
-  movedItem: null | { [key: string]: any } = null
+  cacheItem: null | { [key: string]: any } = null
+  catchState: string = ''
   isDialogOpen = false
   activeTask: null | TaskDetail = null
 
@@ -122,25 +123,32 @@ export default class IndexPage extends Vue {
   }
 
   private changeStatus (status: string): void | boolean {
-    if (this.movedItem === null || this.movedItem.status === status) {
+    if (this.cacheItem === null || this.cacheItem.status === status) {
       return false
     }
 
     const state = status
     const changeStatusItem = {
-      ...this.movedItem,
+      ...this.cacheItem,
       status: state
     }
 
     this.updateTask(changeStatusItem)
   }
 
-  private moveItem (item: { [key: string]: any }): void {
-    this.movedItem = item
+  private dragStart (item: { [key: string]: any }): void {
+    this.cacheItem = item
   }
 
-  private fixItem (item: { [key: string]: any }): void {
-    this.movedItem = item
+  private dragEnd (): void {
+    this.changeStatus(this.catchState)
+
+    this.cacheItem = null
+    this.catchState = ''
+  }
+
+  private dragEnter (status: string) {
+    this.catchState = status
   }
 
   async mounted () {

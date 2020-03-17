@@ -4,8 +4,8 @@
     draggable="true"
     class="card-task"
     :class="{ 'is-done': task.status === 'done' }"
-    @dragstart="moveItem($event, task)"
-    @dragend="fixItem($event, task)"
+    @dragstart="dragStart($event, task)"
+    @dragend="dragEnd"
   >
     <v-card-title
       :class="{'d-flex justify-space-between title-modal-open': task.description}"
@@ -94,14 +94,14 @@ export default class TodoCard extends Vue {
     this.$emit('remove-task-item', taskId)
   }
 
-  private moveItem (event: any, task: { [key: string]: any }): void {
+  private dragStart (event: any, task: { [key: string]: any }): void {
     event.target.style.opacity = '.6'
-    this.$emit('move-item', task)
+    this.$emit('drag-start', task)
   }
 
-  private fixItem (event: any, task: { [key: string]: any }): void {
+  private dragEnd (event: any): void {
     event.target.style.opacity = '1'
-    this.$emit('fix-item', task)
+    this.$emit('drag-end')
   }
 }
 </script>
