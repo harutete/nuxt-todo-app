@@ -1,7 +1,9 @@
 <template>
   <v-form>
     <v-container fluid>
-      <p class="caption red--text">(*) is Required fields</p>
+      <p class="caption red--text">
+        (*) is Required fields
+      </p>
       <v-row>
         <v-col
           align="center"
