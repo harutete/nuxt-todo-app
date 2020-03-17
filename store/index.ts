@@ -23,6 +23,18 @@ export const state = (): IndexState => ({
   }
 })
 
+// const taskCollection = async (rootGetters: any): Promise<{ [key: string]: any }[]> => {
+//   let documentArray: { [key: string]: any }[] = []
+//   const uid = rootGetters.user.uid
+//   const querySnapShot = await usersCollection.doc(uid).collection('tasks').get()
+//   querySnapShot.forEach((snapShot) => {
+//     const data = { ...snapShot.data() }
+//     documentArray.push(data)
+//   })
+
+//   return documentArray
+// }
+
 export const getters: GetterTree<IndexState, IndexState> = {
   isLogin: state => !!state.user,
   user: state => state.user,
@@ -62,9 +74,9 @@ export const mutations: MutationTree<IndexState> = {
 export const actions: ActionTree<IndexState, IndexState> = {
   init: firestoreAction(async ({ bindFirestoreRef, rootGetters }): Promise<void> => {
     const uid = rootGetters.user.uid
-    const userTasks = usersCollection.doc(uid).collection('tasks')
+    const userTaskCollection = usersCollection.doc(uid).collection('tasks')
 
-    bindFirestoreRef('tasks', userTasks)
+    bindFirestoreRef('tasks', userTaskCollection)
   }),
   addTask: firestoreAction(({ rootGetters }, taskItem): void => {
     const uid = rootGetters.user.uid
@@ -79,11 +91,11 @@ export const actions: ActionTree<IndexState, IndexState> = {
 
     updatedTask.update({ status: taskItem.status })
   }),
-  removeTask: firestoreAction(({ rootGetters }, id): void => {
+  removeTask: firestoreAction(({ rootGetters }, taskId): void => {
     const uid = rootGetters.user.uid
     const userTaskCollection = usersCollection.doc(uid).collection('tasks')
 
-    userTaskCollection.doc(id).delete()
+    userTaskCollection.doc(taskId).delete()
   })
 }
 
