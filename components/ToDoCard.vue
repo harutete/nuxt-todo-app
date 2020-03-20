@@ -8,7 +8,7 @@
     @dragend="dragEnd"
   >
     <v-card-title
-      :class="{'d-flex justify-space-between title-modal-open': task.description}"
+      :class="{ 'd-flex justify-space-between title-modal-open': task.description }"
       @click="showModal(task)"
     >
       <div>
@@ -109,6 +109,10 @@ export default class TodoCard extends Vue {
 <style lang="scss" scoped>
 .title-modal-open {
   cursor: pointer;
+  transition: opacity .2s ease;
+  &:hover {
+    opacity: .6;
+  }
 }
 .list-color-chip {
   list-style: none;
