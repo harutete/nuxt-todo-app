@@ -1,6 +1,6 @@
 import { TaskDetail } from '~/types'
 import filteringTasks from '~/common/filteringTasks'
-import stubTaskData from '~/test/stub/stubTaskData.json'
+import stubTaskData from '~/__tests__/stub/stubTaskData.json'
 
 const taskData: TaskDetail[] = stubTaskData
 describe('filteringTasks', () => {
