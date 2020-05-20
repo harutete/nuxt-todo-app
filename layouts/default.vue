@@ -49,13 +49,14 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { Getter } from 'vuex-class'
+import { Getter, Mutation } from 'vuex-class'
 import firebase from 'firebase'
 
 @Component
 export default class DefaultLayout extends Vue {
   @Getter('user') user
   @Getter('isLogin') isLogin
+  @Mutation('setLoggedIn') setLoggedIn
 
   title = 'TODO TASK'
   clipped = false
@@ -67,6 +68,7 @@ export default class DefaultLayout extends Vue {
 
   private logOut () {
     firebase.auth().signOut()
+    this.$store.commit('setLoggedIn', null)
     this.$router.push('/login')
   }
 }
