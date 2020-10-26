@@ -65,9 +65,6 @@ export const getters: GetterTree<IndexState, IndexState> = {
 }
 
 export const mutations: MutationTree<IndexState> = {
-  setLogginStatus: (state: IndexState, isLogin: boolean): void => {
-    state.isLogin = isLogin
-  },
   setUserData: (state: IndexState, user): void => {
     state.user = user
   },

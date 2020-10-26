@@ -56,7 +56,7 @@ import firebase from 'firebase'
 export default class DefaultLayout extends Vue {
   @Getter('user') user
   @Getter('isLogin') isLogin
-  @Mutation('setLogginStatus') setLogginStatus
+  @Mutation('setUserData') setUserData
 
   title = 'TODO TASK'
   clipped = false
@@ -68,7 +68,7 @@ export default class DefaultLayout extends Vue {
 
   private logOut () {
     firebase.auth().signOut()
-    this.$store.commit('setLogginStatus', null)
+    this.$store.commit('setUserData', null)
     this.$router.push('/login')
   }
 }
