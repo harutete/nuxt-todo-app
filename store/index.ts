@@ -39,19 +39,25 @@ export const getters: GetterTree<IndexState, IndexState> = {
   isLogin: state => !!state.user,
   user: state => state.user,
   beforeTasks: (state: IndexState): TaskDetail[] | undefined => {
-    if (state.tasks === null) return
+    if (state.tasks === null) {
+      return
+    }
     const filteringtask = filteringTasks(state.tasks, 'before')
 
     return checkTerm(filteringtask)
   },
   runningTasks: (state: IndexState): TaskDetail[] | undefined => {
-    if (state.tasks === null) return
+    if (state.tasks === null) {
+      return
+    }
     const filteringtask = filteringTasks(state.tasks, 'running')
 
     return checkTerm(filteringtask)
   },
   doneTasks: (state: IndexState): TaskDetail[] | undefined => {
-    if (state.tasks === null) return
+    if (state.tasks === null) {
+      return
+    }
 
     return filteringTasks(state.tasks, 'done')
   },
@@ -74,7 +80,7 @@ export const mutations: MutationTree<IndexState> = {
 export const actions: ActionTree<IndexState, IndexState> = {
   init: firestoreAction(async ({ bindFirestoreRef, rootGetters }): Promise<void> => {
     const uid = rootGetters.user.uid
-    const userTaskCollection = usersCollection.doc(uid).collection('tasks')
+    const userTaskCollection = await usersCollection.doc(uid).collection('tasks')
 
     bindFirestoreRef('tasks', userTaskCollection)
   }),
@@ -98,4 +104,3 @@ export const actions: ActionTree<IndexState, IndexState> = {
     userTaskCollection.doc(taskId).delete()
   })
 }
-
